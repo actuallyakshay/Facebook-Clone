@@ -1,18 +1,24 @@
 import React from "react";
 
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Flex } from "@chakra-ui/react";
 import Carousel from "./Stories";
+import Reels from "./Reels";
+import Rooms from "./Rooms";
+import Upload from "./Upload";
 function Slidertab() {
   return (
-    <>
+    <Flex flexDirection={"column"}>
       <Tabs
-        border="2px solid red"
-        w={{ base: "95%", lg: "70%" }}
+        // border="2px solid red"
+        w={{ base: "95%", lg: "75%" }}
         mx="auto"
         mt="5"
-        h="250px"
+        h={{ base: "200px", sm: "210px", md: "250px", lg: "260px" }}
         borderRadius="10px"
         // position={"relative"}
+        bgColor={"white"}
+        px="0"
+        paddingBottom={"1"}
       >
         <TabList
           w="100%"
@@ -34,15 +40,16 @@ function Slidertab() {
           <TabPanel position={"relative"}>
             <Carousel />
           </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel position={"relative"}>
+            <Reels />
           </TabPanel>
-          <TabPanel>
-            <p>three!</p>
+          <TabPanel position={"relative"}>
+            <Rooms />
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </>
+      <Upload />
+    </Flex>
   );
 }
 

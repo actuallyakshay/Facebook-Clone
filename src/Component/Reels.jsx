@@ -20,14 +20,18 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const arr = [
-  "https://scontent.fagr1-4.fna.fbcdn.net/v/t39.30808-6/312902837_3322348451364701_1529533510171976340_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=NPsutTOpkFIAX9T2k8t&_nc_ht=scontent.fagr1-4.fna&oh=00_AT94vXZn0gj03M-czaN7wnbYIprdLnjJOjh7h-cES3Bexw&oe=635BA2DA",
-  "https://scontent.fagr1-1.fna.fbcdn.net/v/t39.30808-6/311657879_2468386149978049_1516791698273125585_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=G9o-9hxS0AsAX_5wnMW&_nc_oc=AQnj15Js2TYwqH_iE2xUH2mxkFGuugxOxG7SzF9wzJGkZjlgX4RY2O647W6vwAvaq1QTduCIzMtjswxr5LPQfokN&_nc_ht=scontent.fagr1-1.fna&oh=00_AT-Z_4lDm_FtitICw0v9gd72S038loK-cCwN6oJypyo5rw&oe=635BB668",
-  "https://scontent.fagr1-2.fna.fbcdn.net/v/t39.30808-6/311487850_2468386719977992_6656991070580735532_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=l-GsJNHbGb4AX_veYYx&_nc_ht=scontent.fagr1-2.fna&oh=00_AT-fSQZQJ4qoLX3ruhkaF8khK8Z1cI_qth6JUpfKH-mIsg&oe=635C7529",
-  "https://scontent.fagr1-4.fna.fbcdn.net/v/t39.30808-6/312902837_3322348451364701_1529533510171976340_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=NPsutTOpkFIAX9T2k8t&_nc_ht=scontent.fagr1-4.fna&oh=00_AT94vXZn0gj03M-czaN7wnbYIprdLnjJOjh7h-cES3Bexw&oe=635BA2DA",
-  "https://scontent.fagr1-1.fna.fbcdn.net/v/t39.30808-6/311657879_2468386149978049_1516791698273125585_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=G9o-9hxS0AsAX_5wnMW&_nc_oc=AQnj15Js2TYwqH_iE2xUH2mxkFGuugxOxG7SzF9wzJGkZjlgX4RY2O647W6vwAvaq1QTduCIzMtjswxr5LPQfokN&_nc_ht=scontent.fagr1-1.fna&oh=00_AT-Z_4lDm_FtitICw0v9gd72S038loK-cCwN6oJypyo5rw&oe=635BB668",
-  "https://scontent.fagr1-2.fna.fbcdn.net/v/t39.30808-6/311487850_2468386719977992_6656991070580735532_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=l-GsJNHbGb4AX_veYYx&_nc_ht=scontent.fagr1-2.fna&oh=00_AT-fSQZQJ4qoLX3ruhkaF8khK8Z1cI_qth6JUpfKH-mIsg&oe=635C7529",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
+  "https://www.youtube.com/embed/wI2vqXsjsIo",
 ];
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 const settings = {
   infinite: false,
   speed: 500,
@@ -35,7 +39,7 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function Carousel() {
+export default function Reels() {
   const [slider, setSlider] = useState();
 
   const [hide, setHide] = useState(true);
@@ -48,7 +52,7 @@ export default function Carousel() {
       position={"absolute"}
       height={{ base: "130px", sm: "160px", md: "185px", lg: "190px" }}
       width="100%"
-      // border="2px solid blue"
+      //   border="2px solid blue"
       overflow={"hidden"}
       top="0"
       left="0"
@@ -90,17 +94,13 @@ export default function Carousel() {
         {arr.map((el, index) => (
           <>
             <Box
-              // border="2px solid green"
-              height={{
-                base: "130px",
-                sm: "160px",
-                md: "165px",
-                lg: "190px",
-              }}
+              border="2px solid green"
+              height="100%"
               ml="2"
-              _hover={{ cursor: "pointer" }}
               borderRadius="10px"
               overflow={"hidden"}
+              _hover={{ transform: "scale(1.02)", transformOrigin: "50% 50%" }}
+              transition="transform .5s"
               position="relative"
               onClick={() => handleClick(index)}
             >
@@ -113,11 +113,19 @@ export default function Carousel() {
                 src="https://avatars.githubusercontent.com/u/107462720?v=4"
                 border={hide ? "2px solid #1877f2" : "2px solid white"}
               />
-              <Image
+              <Box
+                as="iframe"
                 src={el}
-                w="100%"
-                _hover={{ transform: "scale(1.1)", transformOrigin: "50% 50%" }}
-                transition="transform .5s"
+                width="100%"
+                height={{
+                  base: "130px",
+                  sm: "160px",
+                  md: "165px",
+                  lg: "170px",
+                }}
+                sx={{
+                  aspectRatio: "10/12",
+                }}
               />
               <Text
                 position={"absolute"}
@@ -138,5 +146,3 @@ export default function Carousel() {
     </Box>
   );
 }
-
-// #f0f2f5
