@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { Heading } from "@chakra-ui/react";
+import "./App.css";
+import Carousel from "./Component/Stories";
+import Navbar from "./Component/Navbar";
+import Login from "./Pages/Login";
+import MainPage from "./Component/MainPage";
+import Sidebar from "./Pages/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Login /> */}
+      <Navbar />
+      <MainPage />
     </div>
   );
 }
