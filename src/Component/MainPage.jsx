@@ -3,6 +3,7 @@ import React from "react";
 import Carousel from "./Stories";
 import Sidebar from "../Pages/Sidebar";
 import Slidertab from "./Slidertab";
+import Online from "./Online";
 
 function MainPage() {
   return (
@@ -19,7 +20,7 @@ function MainPage() {
         {/* <Carousel /> */}
         <Slidertab />
         <Box display={{ base: "none", lg: "flex" }}>
-          <Sidebar />
+         <Online />
         </Box>
       </Grid>
    

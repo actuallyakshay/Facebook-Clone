@@ -112,6 +112,7 @@ export default function Reels() {
                 left="7%"
                 src="https://avatars.githubusercontent.com/u/107462720?v=4"
                 border={hide ? "2px solid #1877f2" : "2px solid white"}
+                zIndex="3"
               />
               <Box
                 as="iframe"
