@@ -10,16 +10,16 @@ function MainPage() {
     <>
       <Grid
         gridTemplateColumns={{ base: "1fr 1fr", lg: "1fr 2fr 1fr" }}
-        gap={{ base: "6", lg: "5" }}
+        // gap={{ base: "6", lg: "5" }}
         // border="2px solid green"
         display={{ base: "flex", lg: "grid" }}
-        w="100%"
+        w="100vw"
         bgColor={"#f0f2f5"}
       >
         <Sidebar />
         {/* <Carousel /> */}
         <Slidertab />
-        <Box display={{ base: "none", lg: "flex" }}>
+        <Box  display={{ base: "none", lg: "flex" }}>
          <Online />
         </Box>
       </Grid>

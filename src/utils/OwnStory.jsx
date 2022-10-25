@@ -57,6 +57,7 @@ function OwnStory() {
           left="15%"
           letterSpacing={".2px"}
           fontWeight="500"
+          display={{base:'none' , lg:"block"}}
         >
           Create Story
         </Text>

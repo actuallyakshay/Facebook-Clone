@@ -1,16 +1,25 @@
 import React from "react";
 
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Flex } from "@chakra-ui/react";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Box,
+  Flex,
+} from "@chakra-ui/react";
 import Carousel from "./Stories";
 import Reels from "./Reels";
 import Rooms from "./Rooms";
 import Upload from "./Upload";
 function Slidertab() {
   return (
-    <Flex flexDirection={"column"}>
+    <Flex w='100%' flexDirection={"column"} >
       <Tabs
         // border="2px solid red"
-        w={{ base: "95%", lg: "75%" }}
+        w={{ base: "95%", sm:"80%" , md:'65%' , lg: "75%" }}
+        // w='90%'
         mx="auto"
         mt="5"
         h={{ base: "200px", sm: "210px", md: "250px", lg: "260px" }}
@@ -21,6 +30,7 @@ function Slidertab() {
         paddingBottom={"1"}
       >
         <TabList
+          // border='2px solid teal'
           w="100%"
           display={"grid"}
           gridTemplateColumns="repeat(3,1fr)"

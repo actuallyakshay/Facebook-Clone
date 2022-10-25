@@ -27,7 +27,7 @@ import { MdHelp, MdFeedback } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import Logout from "./Logout";
 
-const arr = [
+const set = [
   { icon: <AiTwotoneSetting />, title: "Settings & privacy" },
   { icon: <MdHelp />, title: "Help & support" },
   { icon: <BsFillMoonStarsFill />, title: "Display & accessibility" },
@@ -37,21 +37,21 @@ const arr = [
 function ProfileInfoSection() {
   return (
     <>
-      <Menu bgColor="white" shadow="md">
+      <Menu bgColor="white" color="black" zIndex="3" shadow="md">
         <MenuButton>
           <Avatar src="https://avatars.githubusercontent.com/u/107462720?v=4" />
         </MenuButton>
         <MenuList
           w={{ base: "250px", md: "280px", lg: "300px" }}
           px="4"
-          bgColor="white"
+          color="black"
         >
           <MenuItem
             mb="5"
             shadow="md"
             borderRadius={"10px"}
             _hover={{ bgColor: "white" }}
-            bgColor="white"
+            // bgColor="white"
           >
             <VStack w="full" alignItems={"start"}>
               <Flex>
@@ -60,13 +60,7 @@ function ProfileInfoSection() {
                     size="sm"
                     src="https://avatars.githubusercontent.com/u/107462720?v=4"
                   />
-                  <Text
-                    display={{ base: "none", md: "block" }}
-                    color="#050505"
-                    fontWeight="500"
-                  >
-                    Akshay Rajput
-                  </Text>
+                  <Text fontWeight="500">Akshay Rajput</Text>
                 </Flex>
               </Flex>
               <Divider />
@@ -81,8 +75,7 @@ function ProfileInfoSection() {
               </Button>
             </VStack>
           </MenuItem>
-          {/* <Divider mb="3" /> */}
-          {arr?.map((el) => {
+          {set?.map((el) => {
             return (
               <>
                 <Flex
@@ -92,18 +85,12 @@ function ProfileInfoSection() {
                 >
                   <Flex mb="4">
                     <Flex alignItems={"center"} gap="3">
-                      <Box
-                        p="2"
-                        borderRadius={"50%"}
-                        bgColor="blackAlpha.200"
-                        color="black"
-                      >
+                      <Box p="2" borderRadius={"50%"} bgColor="blackAlpha.200">
                         {el.icon}
                       </Box>
 
                       <Text
-                        display={{ base: "none", md: "block" }}
-                        color="#050505"
+                        // display={{ base: "none", md: "block" }}
                         fontWeight="500"
                         fontSize="13px"
                       >

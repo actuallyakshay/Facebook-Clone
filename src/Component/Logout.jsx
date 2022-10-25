@@ -9,7 +9,6 @@ function Logout() {
           <RiLogoutBoxRFill />
         </Box>
         <Text
-          display={{ base: "none", md: "block" }}
           color="#050505"
           fontWeight="500"
           fontSize="13px"

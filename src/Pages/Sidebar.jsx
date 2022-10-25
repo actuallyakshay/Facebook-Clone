@@ -88,12 +88,13 @@ function Sidebar() {
       position="sticky"
       top="50px"
       h="90vh"
-      w={{base :'fit-content' , lg :"23vw"}}
+      w={{base :'20vw', md:'12vw' , lg :"23vw"}}
       flexDirection={"column"}
-      px="4"
+      paddingLeft="4"
       py="4"
       overflowY={"scroll"}
       gap="4"
+      // border='2px solid black'
     >
       {arr?.map((el) => {
         return (
@@ -101,7 +102,7 @@ function Sidebar() {
             <Flex alignItems={"center"} gap="3">
               <Avatar size="xs" src={el.src} _hover={{ cursor: "pointer" }} />
               <Text
-                display={{ base: "none", md: "block" }}
+                display={{ base: "none", lg: "block" }}
                 color="#050505"
                 fontSize={"13px"}
                 fontWeight="500"
