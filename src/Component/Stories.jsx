@@ -18,6 +18,7 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import OwnStory from "../utils/OwnStory";
 
 const arr = [
   "https://scontent.fagr1-4.fna.fbcdn.net/v/t39.30808-6/312902837_3322348451364701_1529533510171976340_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=NPsutTOpkFIAX9T2k8t&_nc_ht=scontent.fagr1-4.fna&oh=00_AT94vXZn0gj03M-czaN7wnbYIprdLnjJOjh7h-cES3Bexw&oe=635BA2DA",
@@ -26,6 +27,7 @@ const arr = [
   "https://scontent.fagr1-4.fna.fbcdn.net/v/t39.30808-6/312902837_3322348451364701_1529533510171976340_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=NPsutTOpkFIAX9T2k8t&_nc_ht=scontent.fagr1-4.fna&oh=00_AT94vXZn0gj03M-czaN7wnbYIprdLnjJOjh7h-cES3Bexw&oe=635BA2DA",
   "https://scontent.fagr1-1.fna.fbcdn.net/v/t39.30808-6/311657879_2468386149978049_1516791698273125585_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=G9o-9hxS0AsAX_5wnMW&_nc_oc=AQnj15Js2TYwqH_iE2xUH2mxkFGuugxOxG7SzF9wzJGkZjlgX4RY2O647W6vwAvaq1QTduCIzMtjswxr5LPQfokN&_nc_ht=scontent.fagr1-1.fna&oh=00_AT-Z_4lDm_FtitICw0v9gd72S038loK-cCwN6oJypyo5rw&oe=635BB668",
   "https://scontent.fagr1-2.fna.fbcdn.net/v/t39.30808-6/311487850_2468386719977992_6656991070580735532_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=l-GsJNHbGb4AX_veYYx&_nc_ht=scontent.fagr1-2.fna&oh=00_AT-fSQZQJ4qoLX3ruhkaF8khK8Z1cI_qth6JUpfKH-mIsg&oe=635C7529",
+  "https://scontent.fagr1-4.fna.fbcdn.net/v/t39.30808-6/312960003_2274217139412323_3907233425879776504_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5b7eaf&_nc_ohc=GV8uGNwBLqUAX-ie3sK&_nc_ht=scontent.fagr1-4.fna&oh=00_AT98j9aXQtzkUk4ODcgMYec0qKzK0edfGDKF863ECDcCCw&oe=635D2385",
 ];
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const settings = {
@@ -87,6 +89,7 @@ export default function Carousel() {
       </IconButton>
       {/* <Flex flexDirection={"column"} gap="20px"> */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
+        <OwnStory  />
         {arr.map((el, index) => (
           <>
             <Box
@@ -112,7 +115,7 @@ export default function Carousel() {
                 left="7%"
                 src="https://avatars.githubusercontent.com/u/107462720?v=4"
                 border={hide ? "2px solid #1877f2" : "2px solid white"}
-                zIndex='3'
+                zIndex="3"
               />
               <Image
                 src={el}

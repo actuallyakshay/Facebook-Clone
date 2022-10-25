@@ -5,6 +5,8 @@ import Navbar from "./Component/Navbar";
 import Login from "./Pages/Login";
 import MainPage from "./Component/MainPage";
 import Sidebar from "./Pages/Sidebar";
+import CreateStory from "./utils/CreateStory";
+import StoryVisible from "./utils/SingleStoryVisible";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       {/* <Login /> */}
       <Navbar />
       <MainPage />
+      {/* <CreateStory /> */}
+      {/* <StoryVisible /> */}
     </div>
   );
 }

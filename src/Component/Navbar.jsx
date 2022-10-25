@@ -20,6 +20,7 @@ import { SiFacebookgaming } from "react-icons/si";
 import { CgMenuGridO } from "react-icons/cg";
 import { BsMessenger } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
+import ProfileInfoSection from "./ProfileInfoSection";
 
 function Navbar() {
   return (
@@ -98,11 +99,7 @@ function Navbar() {
           >
             <IoIosNotifications size="15px" />
           </Box>
-
-          <Avatar
-            size="md"
-            src="https://avatars.githubusercontent.com/u/107462720?v=4"
-          />
+          <ProfileInfoSection />
         </HStack>
       </Flex>
     </>

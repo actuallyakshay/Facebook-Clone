@@ -14,6 +14,7 @@ import React from "react";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgMenuRight } from "react-icons/cg";
+import Friendsonline from "../utils/Friendsonline";
 const arr = [
   {
     src: "https://avatars.githubusercontent.com/u/107462720?v=4",
@@ -68,7 +69,7 @@ function Online() {
         <Heading color="blackAlpha.600" fontSize="17px" fontWeight={"500"}>
           Contacts
         </Heading>
-        <HStack spacing="1" color="blackAlpha.600">
+        <HStack spacing="-1" color="blackAlpha.600">
           <IconButton
             borderRadius={"full"}
             aria-label="Search database"
@@ -81,12 +82,7 @@ function Online() {
             _hover={{ bgColor: "blackAlpha.100" }}
             icon={<AiOutlineSearch />}
           />
-          <IconButton
-            borderRadius={"full"}
-            aria-label="Search database"
-            _hover={{ bgColor: "blackAlpha.100" }}
-            icon={<CgMenuRight />}
-          />
+          <Friendsonline />
         </HStack>
       </Flex>
       <Flex gap="5" flexDirection={"column"}>
