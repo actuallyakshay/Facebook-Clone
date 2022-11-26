@@ -71,13 +71,15 @@ function PostComponent({ elem }) {
       <br />
       <VStack
         key={elem?._id}
-        w={{ base: "95%", sm: "90%", md: "75%", lg: "75%" }}
+        // w={{ base: "95%", sm: "90%", md: "75%", lg: "75%" }}
+        w={{ base: "95%", sm: "80%", md: "65%", lg: "75%" }}
         mx="auto"
         m="auto"
         align="start"
         borderRadius={"10px"}
         py="2"
         bg="white"
+        overflowX={"hidden"}
       >
         <HStack px="2" w="full" justifyContent={"space-between"}>
           <HStack>
@@ -113,7 +115,7 @@ function PostComponent({ elem }) {
         >
           {elem?.posts?.caption}
         </Text>
-        <Box w="full">
+        <Box w="full" overflowX={"hidden"}>
           <Image src={elem?.posts?.image} m="auto" />
         </Box>
         <HStack
@@ -153,7 +155,6 @@ function PostComponent({ elem }) {
             size="sm"
             flex="1"
             letterSpacing={".5px"}
-            // color={!like ? "#1877f2" : ""}
             _hover={{ bg: "blackAlpha.100" }}
             onClick={() => handleLike(elem._id)}
           >

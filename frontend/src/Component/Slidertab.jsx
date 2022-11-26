@@ -44,17 +44,22 @@ function Slidertab({ postData }) {
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel position={"relative"}><Carousel /></TabPanel>
-          <TabPanel position={"relative"}><Reels /></TabPanel>
-          <TabPanel position={"relative"}><Rooms /></TabPanel>
+          <TabPanel position={"relative"}>
+            <Carousel />
+          </TabPanel>
+          <TabPanel position={"relative"}>
+            <Reels />
+          </TabPanel>
+          <TabPanel position={"relative"}>
+            <Rooms />
+          </TabPanel>
         </TabPanels>
       </Tabs>
       <br />
       <Upload />
-      {postData &&
-        postData.map((elem) => {
-          return <PostComponent elem={elem} />;
-        })}
+      {postData?.map((elem) => {
+        return <PostComponent elem={elem} />;
+      })}
     </Flex>
   );
 }

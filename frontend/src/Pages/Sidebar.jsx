@@ -80,6 +80,7 @@ function Sidebar() {
       py="4"
       overflowY={"scroll"}
       gap="4"
+      zIndex={'6'}
     >
       {arr?.map((el,index) => {
         return (

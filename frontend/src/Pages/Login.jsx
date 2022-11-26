@@ -38,18 +38,24 @@ function Login() {
   };
 
   const handleLogin = (loginForm) => {
+    // console.log("first");
     dispatch(getLOGIN(loginForm));
-    if (token) {
-      navigate("/");
-      toast({
-        title: "Greeting of the Day !",
-        description: "Welcome to facebook",
-        status: "success",
-        duration: 2000,
-        position: "top",
-        isClosable: true,
-      });
-    }
+    // console.log("second");
+    setTimeout(() => {
+      // console.log("third");
+      if (token) {
+        // console.log("forth");
+        navigate("/");
+        toast({
+          title: "Greeting of the Day !",
+          description: "Welcome to facebook",
+          status: "success",
+          duration: 2000,
+          position: "top",
+          isClosable: true,
+        });
+      }
+    }, 1000);
   };
 
   return (

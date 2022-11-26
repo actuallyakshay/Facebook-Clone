@@ -79,7 +79,7 @@ function Navbar() {
             spacing={4}
             justifyContent="center"
             alignItems={"center"}
-            w={{ base: "230px", lg: "fit-content" }}
+            w={{ base: "130px", lg: "200px" }}
           >
             <InputGroup position="relative">
               <VStack

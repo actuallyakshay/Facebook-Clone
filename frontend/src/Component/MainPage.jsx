@@ -1,4 +1,4 @@
-import { Box, Button, Grid, HStack } from "@chakra-ui/react";
+import { Box, Button, Container, Grid, HStack } from "@chakra-ui/react";
 import React from "react";
 import Carousel from "./Stories";
 import Sidebar from "../Pages/Sidebar";
@@ -42,7 +42,8 @@ function MainPage() {
         <Sidebar />
         <Box>
           <Slidertab postData={postData} />
-          <HStack w="full" justifyContent={"center"} mt="3">
+          
+          <HStack w="50%" m='auto' justifyContent={"center"} mt="3">
             <Button
               bg="white"
               borderRadius="0px"
