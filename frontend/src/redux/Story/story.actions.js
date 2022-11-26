@@ -7,7 +7,7 @@ export const add_story_to_db = (token, url) => (dispatch) => {
   };
 
   axios
-    .post(`http://localhost:8080/story`, body, {
+    .post(`https://graceful-visor-slug.cyclic.app/story`, body, {
       headers: {
         token: token,
       },
@@ -17,7 +17,7 @@ export const add_story_to_db = (token, url) => (dispatch) => {
 
 export const get_stories = () => (dispatch) => {
   axios
-    .get(`http://localhost:8080/story`)
+    .get(`https://graceful-visor-slug.cyclic.app/story`)
     .then((res) => dispatch({ type: GET_STORY, payload: res.data }));
 };
 

@@ -1,4 +1,4 @@
-import { Box, Grid } from "@chakra-ui/react";
+import { Box, Button, Grid, HStack } from "@chakra-ui/react";
 import React from "react";
 import Carousel from "./Stories";
 import Sidebar from "../Pages/Sidebar";
@@ -10,6 +10,7 @@ import { getAllPOSTS, getPOSTS } from "../redux/Posts/post.actions";
 import { getSingleUserDetails } from "../redux/SingleUserDetail/single.actions";
 import Navbar from "./Navbar";
 import { get_stories } from "../redux/Story/story.actions";
+import { useState } from "react";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -18,17 +19,16 @@ function MainPage() {
 
   let postData = posts.reverse();
 
-  let token = localStorage.getItem("token")
-  
-  let [email,id,password] = token.split(":")
+  let token = localStorage.getItem("token");
+
+  let [email, id, password] = token.split(":");
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    dispatch(getAllPOSTS());
+    dispatch(getAllPOSTS(page));
     dispatch(getSingleUserDetails(id));
     dispatch(get_stories());
-  }, [dispatch]);
-
-  console.log({id})
+  }, [dispatch, page]);
 
   return (
     <>
@@ -40,7 +40,28 @@ function MainPage() {
         bgColor={"#f0f2f5"}
       >
         <Sidebar />
-        <Slidertab postData={postData} />
+        <Box>
+          <Slidertab postData={postData} />
+          <HStack w="full" justifyContent={"center"} mt="3">
+            <Button
+              bg="white"
+              borderRadius="0px"
+              onClick={() => setPage(page - 1)}
+            >
+              prev
+            </Button>
+            <Button bg="white" borderRadius="0px">
+              {page}
+            </Button>
+            <Button
+              onClick={() => setPage(page + 1)}
+              bg="white"
+              borderRadius="0px"
+            >
+              Next
+            </Button>
+          </HStack>
+        </Box>
         <Box display={{ base: "none", lg: "flex" }}>
           <Online />
         </Box>

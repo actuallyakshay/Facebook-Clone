@@ -49,7 +49,7 @@ function CreateStory() {
         };
         setloading(false);
         axios
-          .post(`http://localhost:8080/story`, body, {
+          .post(`https://graceful-visor-slug.cyclic.app/story`, body, {
             headers: {
               token: token,
             },

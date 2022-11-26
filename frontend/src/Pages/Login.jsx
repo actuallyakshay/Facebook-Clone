@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getLOGIN } from "../redux/Auth/auth.actions";
 import LoginFooter from "./LoginFooter";
-import Singup from "./Singup";
+import Singup from "./Signup";
 
 function Login() {
   const [loginForm, setloginForm] = useState({

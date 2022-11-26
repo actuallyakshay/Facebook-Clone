@@ -11,10 +11,10 @@ import {
 } from "./auth.types";
 
 export const getAuth = (form) => (dispatch) => {
+  console.log("form", form);
   dispatch({ type: GET_AUTH_SIGNUP_LOADING });
-
   axios
-    .post(`http://localhost:8080/user/signup`, form)
+    .post(`https://graceful-visor-slug.cyclic.app/user/signup`, form)
     .then((res) =>
       dispatch({ type: GET_AUTH_SIGNUP_SUCCESS, payload: res.data })
     );
@@ -23,22 +23,22 @@ export const getAuth = (form) => (dispatch) => {
 export const getLOGIN = (form) => (dispatch) => {
   dispatch({ type: GET_AUTH_LOADING });
   axios
-    .post(`http://localhost:8080/user/login`, form)
+    .post(`https://graceful-visor-slug.cyclic.app/user/login`, form)
     .then((res) =>
       dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token })
     )
     .catch((err) => dispatch({ type: GET_AUTH_ERROR }));
 };
 
-export const getUpdateProfile = (body, token,id) => (dispatch) => {
+export const getUpdateProfile = (body, token, id) => (dispatch) => {
   console.log({ body, token });
   axios
-    .patch(`http://localhost:8080/user`, body, {
+    .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
       headers: {
         token: token,
       },
     })
-    .then((res) =>  dispatch(get_profile_info(id)))
+    .then((res) => dispatch(get_profile_info(id)))
     .catch((e) => console.log(e.message));
 };
 
@@ -49,7 +49,7 @@ export const sign_out_func = () => (dispatch) => {
 // export const add_friend = (body, token) => (dispatch) => {
 //   const toast = useToast();
 //   axios
-//     .patch(`http://localhost:8080/user`, body, {
+//     .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
 //       headers: {
 //         token: token,
 //       },

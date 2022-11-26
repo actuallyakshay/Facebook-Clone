@@ -30,6 +30,7 @@ import {
 } from "react-icons/ai";
 import { FcAddImage } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Navbar";
 import { getUpdateProfile } from "../../redux/Auth/auth.actions";
 import { uploadPost } from "../../redux/Posts/post.actions";
@@ -52,6 +53,7 @@ function ProfilePage() {
   useEffect(() => {}, [dispatch]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const data = new FormData();
@@ -83,7 +85,7 @@ function ProfilePage() {
     };
 
     axios
-      .patch(`http://localhost:8080/user`, body, {
+      .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
         headers: {
           token: token,
         },
@@ -114,7 +116,7 @@ function ProfilePage() {
             size={{ base: "lg", lg: "2xl" }}
             src={
               loading
-                ? "https://media2.giphy.com/media/VseXvvxwowwCc/200w.webp?cid=ecf05e47gzdrk4j9x1cxmjfs914ldc03qslrnwwhmue1366t&rid=200w.webp&ct=g"
+                ? "https://media3.giphy.com/media/nR4L10XlJcSeQ/200.webp?cid=ecf05e47fi1tj25pvrvkaazvwa3higj6famnd0q1gro8o8uv&rid=200.webp&ct=g"
                 : pInfo?.userDetails?.image
             }
             position={"relative"}
@@ -211,6 +213,7 @@ function ProfilePage() {
                   size="sm"
                   leftIcon={<AiFillPlusCircle />}
                   display={{ base: "none", lg: "flex" }}
+                  onClick={() => navigate("/createstory")}
                 >
                   Add to story
                 </Button>

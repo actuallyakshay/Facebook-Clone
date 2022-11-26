@@ -22,10 +22,38 @@ function AllRoutes() {
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/story" element={<CreateStory />}></Route>
-        <Route path="/stories" element={<StoryVisible />}></Route>
-        <Route path="/createstory" element={<CreateStory />}></Route>
-        <Route path="/singleStory" element={<StoryVisible />}></Route>
+        <Route
+          path="/story"
+          element={
+            <PrivateRoute>
+              <CreateStory />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/stories"
+          element={
+            <PrivateRoute>
+              <StoryVisible />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/createstory"
+          element={
+            <PrivateRoute>
+              <CreateStory />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/singleStory"
+          element={
+            <PrivateRoute>
+              <StoryVisible />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="/user" element={<UserPage />}></Route>
         <Route
           path="/profile"

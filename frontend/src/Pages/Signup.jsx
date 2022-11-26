@@ -51,15 +51,31 @@ function Singup() {
   };
 
   const handleSubmit = (form) => {
-    if (form.email.length <= 4 && !form.email.split("").includes("@")) {
+    let arr = form.email.split("");
+    if (form.password.length <= 5) {
       return toast({
-         title: "OOPPPSS !!! ☹️",
-         description: "Please enter valid email",
-         status: "warning",
-         duration: 2000,
-         position: "top",
-         isClosable: true,
-       });
+        title: "Password length should be minimum 6",
+        status: "warning",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    } else if (!arr.includes("@")) {
+      return toast({
+        title: "Please enter valid email",
+        status: "warning",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    } else if (form.gender == "") {
+      return toast({
+        title: "Please Select gender",
+        status: "warning",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
     }
     dispatch(getAuth(form));
     onClose();
@@ -121,7 +137,7 @@ function Singup() {
               <Input
                 name="password"
                 value={form.password}
-                type="text"
+                type="password"
                 placeholder="New Password"
                 onChange={(e) => handleChange(e)}
               />
@@ -132,26 +148,27 @@ function Singup() {
                 <Input
                   name="date"
                   value={form.date}
-                  type="Number"
+                  type="number"
                   placeholder="Date"
                   onChange={(e) => handleChange(e)}
                 />
                 <Input
                   name="month"
                   value={form.month}
-                  type="Month"
+                  type="number"
                   placeholder="month"
                   onChange={(e) => handleChange(e)}
                 />
                 <Input
                   name="year"
                   value={form.year}
-                  type="year"
+                  type="number"
                   placeholder="year"
                   onChange={(e) => handleChange(e)}
                 />
               </HStack>
               <Select name="gender" onClick={(e) => handleChange(e)}>
+                <option value="Male">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </Select>

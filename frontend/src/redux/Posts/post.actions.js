@@ -10,31 +10,37 @@ import {
 
 export const uploadPost = (body, token) => async (dispatch) => {
   try {
-    let res = await axios.post(`http://localhost:8080/data`, body, {
-      headers: {
-        token: token,
-      },
-    });
+    let res = await axios.post(
+      `https://graceful-visor-slug.cyclic.app/data`,
+      body,
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
     dispatch(getAllPOSTS());
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getAllPOSTS = () => async (dispatch) => {
+export const getAllPOSTS = (page) => async (dispatch) => {
   dispatch({ type: GET_POST_LOADING });
   await axios
-    .get(`http://localhost:8080/data`)
+    .get(`https://graceful-visor-slug.cyclic.app/data?page=${page}&limit=20`)
     .then((res) => {
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
-
     })
     .catch((err) => dispatch({ type: GET_POST_ERROR }));
 };
 
 export const PUT_LIKE = (_id, body) => async (dispatch) => {
   try {
-    let res = await axios.patch(`http://localhost:8080/data/${_id}`, body);
+    let res = await axios.patch(
+      `https://graceful-visor-slug.cyclic.app/data/${_id}`,
+      body
+    );
     dispatch(getAllPOSTS());
   } catch (error) {
     console.log(error);
@@ -43,7 +49,10 @@ export const PUT_LIKE = (_id, body) => async (dispatch) => {
 
 export const PUT_COMMENT = (_id, body) => async (dispatch) => {
   try {
-    let res = await axios.patch(`http://localhost:8080/data/${_id}`, body);
+    let res = await axios.patch(
+      `https://graceful-visor-slug.cyclic.app/data/${_id}`,
+      body
+    );
     dispatch(getAllPOSTS());
   } catch (error) {
     console.log(error);
@@ -52,11 +61,14 @@ export const PUT_COMMENT = (_id, body) => async (dispatch) => {
 
 export const POST_DELETE = (id, token) => async (dispatch) => {
   try {
-    let res = await axios.delete(`http://localhost:8080/data/${id}`, {
-      headers: {
-        token: token,
-      },
-    });
+    let res = await axios.delete(
+      `https://graceful-visor-slug.cyclic.app/data/${id}`,
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
     dispatch(getAllPOSTS());
   } catch (error) {
     console.log(error);

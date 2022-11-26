@@ -141,7 +141,12 @@ export default function CoverPhoto() {
                 <DeleteIcon color="white" />
               </Button>
               {loading ? (
-                <Heading>...loading</Heading>
+                <Box h="full" w="full">
+                  <Image
+                    m="auto"
+                    src="https://media3.giphy.com/media/nR4L10XlJcSeQ/200.webp?cid=ecf05e47fi1tj25pvrvkaazvwa3higj6famnd0q1gro8o8uv&rid=200.webp&ct=g"
+                  />
+                </Box>
               ) : (
                 <Image
                   src={
