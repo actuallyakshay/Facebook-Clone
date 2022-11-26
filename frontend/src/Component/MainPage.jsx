@@ -21,7 +21,11 @@ function MainPage() {
 
   let token = localStorage.getItem("token");
 
-  let [email, id, password] = token.split(":");
+  let email, id, password;
+  if (token) {
+    [email, id, password] = token.split(":");
+  }
+
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -42,8 +46,8 @@ function MainPage() {
         <Sidebar />
         <Box>
           <Slidertab postData={postData} />
-          
-          <HStack w="50%" m='auto' justifyContent={"center"} mt="3">
+
+          <HStack w="50%" m="auto" justifyContent={"center"} mt="3">
             <Button
               bg="white"
               borderRadius="0px"

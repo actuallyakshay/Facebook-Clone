@@ -17,7 +17,7 @@ import {
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getLOGIN } from "../redux/Auth/auth.actions";
 import LoginFooter from "./LoginFooter";
 import Singup from "./Signup";
@@ -29,7 +29,7 @@ function Login() {
   });
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.data?.token);
-
+  const isAuth = useSelector((state) => state?.auth?.data?.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
 
@@ -38,25 +38,22 @@ function Login() {
   };
 
   const handleLogin = (loginForm) => {
-    // console.log("first");
     dispatch(getLOGIN(loginForm));
-    // console.log("second");
-    setTimeout(() => {
-      // console.log("third");
-      if (token) {
-        // console.log("forth");
-        navigate("/");
-        toast({
-          title: "Greeting of the Day !",
-          description: "Welcome to facebook",
-          status: "success",
-          duration: 2000,
-          position: "top",
-          isClosable: true,
-        });
-      }
-    }, 1000);
+    if (token) {
+      toast({
+        title: "Greeting of the Day !",
+        description: "Welcome to facebook",
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    }
   };
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
@@ -94,7 +91,7 @@ function Login() {
               spacing={4}
               w={"full"}
               maxW={"md"}
-              bg={useColorModeValue("white", "white")}
+              // bg={useColorModeValue("white", "white")}
               rounded={"xl"}
               boxShadow={"xl"}
               p={6}

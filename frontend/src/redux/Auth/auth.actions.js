@@ -24,7 +24,7 @@ export const getAuth = (form) => (dispatch) => {
 
 
 export const getLOGIN = (form) => (dispatch) => {
-
+    dispatch({ type: GET_AUTH_LOADING });
   axios
     .post(`https://graceful-visor-slug.cyclic.app/user/login`, form)
     .then((res) => {
