@@ -22,7 +22,7 @@ function MainPage() {
   let token = localStorage.getItem("token");
 
   let [email, id, password] = token.split(":");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(getAllPOSTS(page));
@@ -47,6 +47,7 @@ function MainPage() {
               bg="white"
               borderRadius="0px"
               onClick={() => setPage(page - 1)}
+              disabled={page == 1 ? "true" : "false"}
             >
               prev
             </Button>
