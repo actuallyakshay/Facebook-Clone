@@ -47,7 +47,7 @@ function MainPage() {
               bg="white"
               borderRadius="0px"
               onClick={() => setPage(page - 1)}
-              disabled={page == 1 ? "true" : "false"}
+              disabled={page == 1 ? "true" : ""}
             >
               prev
             </Button>
