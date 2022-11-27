@@ -16,16 +16,6 @@ function FriendsShow({ el }) {
             {el?.fName} {el?.lName}
           </Heading>
         </HStack>
-        <Box w="fit-content">
-          <Button
-            onClick={() => handleAdd()}
-            _hover={{ bg: "none" }}
-            bg="none"
-            size="sm"
-          >
-            <IoPersonAddSharp size="18px" />
-          </Button>
-        </Box>
       </HStack>
     </>
   );

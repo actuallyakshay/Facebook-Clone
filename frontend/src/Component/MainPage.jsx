@@ -16,15 +16,26 @@ function MainPage() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state?.post?.postsData);
+  const isAuth = useSelector((state) => state?.auth?.data?.isAuth);
 
   let postData = posts.reverse();
 
   const [page, setPage] = useState(1);
+  let token = localStorage.getItem("token");
+  let email, id, password;
 
+  if (isAuth) {
+    [email, id, password] = token.split(":");
+  }
+
+  console.log({ id });
 
   useEffect(() => {
     dispatch(getAllPOSTS(page));
     dispatch(get_stories());
+    if (isAuth) {
+      dispatch(getSingleUserDetails(id));
+    }
   }, [dispatch, page]);
 
   return (

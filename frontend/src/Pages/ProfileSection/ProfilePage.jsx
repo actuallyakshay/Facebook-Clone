@@ -34,7 +34,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Navbar";
 import { getUpdateProfile } from "../../redux/Auth/auth.actions";
 import { uploadPost } from "../../redux/Posts/post.actions";
-import { get_profile_info } from "../../redux/SingleUserDetail/single.actions";
+import {
+  getSingleUserDetails,
+  get_profile_info,
+} from "../../redux/SingleUserDetail/single.actions";
 import CoverPhoto from "./CoverPhoto";
 import ProfileGrid from "./ProfileGrid";
 
@@ -50,10 +53,15 @@ function ProfilePage() {
 
   const [email, id, password] = token.split(":");
 
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => {
+    getSingleUserDetails(id);
+  }, [dispatch]);
+
+  console.log("akshay", user);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const data = new FormData();
@@ -88,6 +96,7 @@ function ProfilePage() {
         },
       })
       .then((res) => {
+        dispatch(getSingleUserDetails(id));
         dispatch(get_profile_info(id));
       });
   };
@@ -132,7 +141,7 @@ function ProfilePage() {
               _hover={{ cursor: "pointer" }}
             >
               {" "}
-              {user?.friends?.length} friends
+              {pInfo?.friends?.length} friends
             </Text>
             <Drawer
               isOpen={isOpen}
@@ -145,7 +154,7 @@ function ProfilePage() {
                 <DrawerCloseButton />
                 <DrawerHeader>Friends 🤜🤛</DrawerHeader>
                 <DrawerBody>
-                  {user?.friends?.length == 0 ? (
+                  {pInfo?.friends?.length == 0 ? (
                     <Box w="full">
                       <Text
                         letterSpacing={".5px"}
@@ -158,7 +167,7 @@ function ProfilePage() {
                     </Box>
                   ) : (
                     <VStack gap="1" align="start">
-                      {user?.friends?.map((item) => {
+                      {pInfo?.friends?.map((item) => {
                         return (
                           <>
                             <HStack gap="4" w="full">
@@ -199,7 +208,7 @@ function ProfilePage() {
               _hover={{ cursor: "pointer" }}
             >
               <AvatarGroup size="sm" max={8}>
-                {user?.friends?.map((elem) => {
+                {pInfo?.friends?.map((elem) => {
                   return <Avatar name="Segun Adebayo" src={elem?.user_image} />;
                 })}
               </AvatarGroup>

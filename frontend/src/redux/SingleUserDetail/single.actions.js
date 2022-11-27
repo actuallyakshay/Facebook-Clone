@@ -18,7 +18,10 @@ export const getSingleUserDetails = (_id) => (dispatch) => {
 export const get_profile_info = (id) => (dispatch) => {
   axios
     .get(`https://graceful-visor-slug.cyclic.app/user/${id}`)
-    .then((res) => dispatch({ type: PROFILE_INFO, payload: res.data }))
+    .then((res) => {
+      dispatch({ type: PROFILE_INFO, payload: res.data });
+      getSingleUserDetails(id);
+    })
     .catch((e) => console.log(e.massage));
 
   axios.get(`https://graceful-visor-slug.cyclic.app/data`).then((res) => {

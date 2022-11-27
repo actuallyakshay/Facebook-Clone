@@ -43,10 +43,12 @@ function Navbar() {
   const handleChange = (e) => {
     setInput(e.target.value);
     setloading(true);
-    axios.get(`https://graceful-visor-slug.cyclic.app/user?q=${e.target.value}`).then((res) => {
-      setData(res.data);
-      setloading(false);
-    });
+    axios
+      .get(`https://graceful-visor-slug.cyclic.app/user?q=${e.target.value}`)
+      .then((res) => {
+        setData(res.data);
+        setloading(false);
+      });
   };
 
   return (
@@ -80,6 +82,7 @@ function Navbar() {
             justifyContent="center"
             alignItems={"center"}
             w={{ base: "130px", lg: "200px" }}
+            zIndex='45'
           >
             <InputGroup position="relative">
               <VStack
@@ -96,11 +99,12 @@ function Navbar() {
                 overflowX="hidden"
                 px="2"
                 py="1"
+                zIndex={10}
               >
                 {data?.map((el) => {
                   return (
-                    <Box key={el._id} w="full">
-                      <FriendsShow el={el} />
+                    <Box zIndex={10} key={el._id} w="full">
+                      <FriendsShow zIndex={11} el={el} />
                       <Divider />
                     </Box>
                   );
