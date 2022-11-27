@@ -131,7 +131,7 @@ export default function Carousel() {
                 px="1"
                 borderRadius={"10px"}
               >
-                {el?.user?.fName} {el?.user?.lName}
+                {el?.user?.fName} 
               </Text>
             </Box>
           </>
