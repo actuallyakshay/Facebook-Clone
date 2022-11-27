@@ -28,7 +28,7 @@ import CompleteYourProfile from "./CompleteYourProfile";
 import { useSelector } from "react-redux";
 
 function BioSection() {
-  const pInfo = useSelector((state) => state?.singleUser?.profileInfo);
+  const user = useSelector((state) => state?.singleUser?.singleUserData);
   return (
     <>
       <VStack
@@ -44,9 +44,9 @@ function BioSection() {
         <Heading size="sm">Intro</Heading>
         <HStack w="full" justifyContent={"center"}>
           <Text>
-            {!pInfo?.userDetails?.bio
+            {!user?.userDetails?.bio
               ? "Please! update your bio"
-              : pInfo?.userDetails?.bio}
+              : user?.userDetails?.bio}
           </Text>
         </HStack>
         <Divider />
@@ -56,7 +56,7 @@ function BioSection() {
             <Text fontSize="14px">lives in</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.lives_in}
+              {user?.userDetails?.lives_in}
             </Text>
           </HStack>
           <HStack>
@@ -64,7 +64,7 @@ function BioSection() {
             <Text fontSize="14px">From</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.lives_in}
+              {user?.userDetails?.lives_in}
             </Text>
           </HStack>
           <HStack>
@@ -72,7 +72,7 @@ function BioSection() {
             <Text fontSize="14px">Status</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.status}
+              {user?.userDetails?.status}
             </Text>
           </HStack>
           <HStack>
@@ -80,7 +80,7 @@ function BioSection() {
             <Text fontSize="14px">followed by</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.followers?.length}
+              {user?.followers?.length}
             </Text>
           </HStack>
         </VStack>
@@ -92,7 +92,7 @@ function BioSection() {
             <Text fontSize="13px">Email</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.email}
+              {user?.email}
             </Text>
           </HStack>
           <HStack>
@@ -100,7 +100,7 @@ function BioSection() {
             <Text fontSize="13px">Birthday</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.date}-{pInfo?.month}-{pInfo?.year}
+              {user?.date}-{user?.month}-{user?.year}
             </Text>
           </HStack>
           <HStack>
@@ -108,7 +108,7 @@ function BioSection() {
             <Text fontSize="13px">Gender</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.gender}
+              {user?.gender}
             </Text>
           </HStack>
           <HStack>
@@ -116,7 +116,7 @@ function BioSection() {
             <Text fontSize="13px">Works At</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.works_at}
+              {user?.userDetails?.works_at}
             </Text>
           </HStack>
           <HStack>
@@ -124,7 +124,7 @@ function BioSection() {
             <Text fontSize="13px">Worked at</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.worked_at[0]}
+              {user?.userDetails?.worked_at[0]}
             </Text>
           </HStack>
           <HStack>
@@ -132,7 +132,7 @@ function BioSection() {
             <Text fontSize="13px">Number</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.number}
+              {user?.userDetails?.number}
             </Text>
           </HStack>
           <HStack>
@@ -140,7 +140,7 @@ function BioSection() {
             <Text fontSize="13px">School</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.school}
+              {user?.userDetails?.school}
             </Text>
           </HStack>
           <HStack>
@@ -148,7 +148,7 @@ function BioSection() {
             <Text fontSize="13px">Interested in</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.intersted_in}
+              {user?.userDetails?.intersted_in}
             </Text>
           </HStack>
           <HStack>
@@ -156,7 +156,7 @@ function BioSection() {
             <Text fontSize="13px">About you</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.about_you}
+              {user?.userDetails?.about_you}
             </Text>
           </HStack>
           <HStack>
@@ -164,7 +164,7 @@ function BioSection() {
             <Text fontSize="13px">favourite quote</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.favourite_quote}
+              {user?.userDetails?.favourite_quote}
             </Text>
           </HStack>
           <HStack>
@@ -172,7 +172,7 @@ function BioSection() {
             <Text fontSize="13px">Life event</Text>
             <Text fontSize="14px" fontWeight={"500"}>
               {" "}
-              {pInfo?.userDetails?.life_event[0]}
+              {user?.userDetails?.life_event[0]}
             </Text>
           </HStack>
         </VStack>

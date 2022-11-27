@@ -55,7 +55,8 @@ function FormInput({ onClose }) {
         },
       })
       .then((res) => {
-        dispatch(get_profile_info(id));
+        // dispatch(get_profile_info(id));
+        dispatch(getSingleUserDetails(id));
       })
       .catch((e) => console.log(e.message));
   };

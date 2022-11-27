@@ -3,9 +3,6 @@ import React from "react";
 import { IoPersonAddSharp } from "react-icons/io5";
 
 function FriendsShow({ el }) {
-    const handleAdd = () => {
-      
-  };
 
   return (
     <>
