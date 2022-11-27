@@ -54,17 +54,17 @@ function PostComponent({ elem }) {
     dispatch(PUT_LIKE(_id, body));
   };
 
-  const handleDelete = (id) => {
-    dispatch(POST_DELETE(id, token));
-    toast({
-      title: `Hey !! ${user?.fName} ❤️ `,
-      description: "post deleted successfully 😿",
-      status: "warning",
-      duration: 2000,
-      position: "top",
-      isClosable: true,
-    });
-  };
+  // const handleDelete = (id) => {
+  //   // dispatch(POST_DELETE(id, token));
+  //   toast({
+  //     title: `Hey !! ${user?.fName} ❤️ `,
+  //     description: "post deleted successfully 😿",
+  //     status: "warning",
+  //     duration: 2000,
+  //     position: "top",
+  //     isClosable: true,
+  //   });
+  // };
 
   return (
     <>
@@ -96,7 +96,7 @@ function PostComponent({ elem }) {
               </VStack>
             </Box>
           </HStack>
-          <Box
+          {/* <Box
             ml="auto"
             p="2"
             borderRadius={"full"}
@@ -104,7 +104,7 @@ function PostComponent({ elem }) {
             onClick={() => handleDelete(elem?._id)}
           >
             <MdOutlineDelete />
-          </Box>
+          </Box> */}
         </HStack>
         <Text
           letterSpacing={".3px"}
@@ -154,6 +154,17 @@ function PostComponent({ elem }) {
             leftIcon={<FaThumbsUp />}
             size="sm"
             flex="1"
+            color={
+              elem?.likes?.find((el) => {
+                if (el?.user_name == `${user?.fName} ${user?.lName}`) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })
+                ? "#1877f2"
+                : "black"
+            }
             letterSpacing={".5px"}
             _hover={{ bg: "blackAlpha.100" }}
             onClick={() => handleLike(elem._id)}

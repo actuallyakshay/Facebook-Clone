@@ -44,12 +44,17 @@ function ProfileInfoSection() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state?.auth?.data?.token);
 
-  const [email, id, password] = token.split(":");
+  let email, id, password;
+
+  if (token) {
+    [email, id, password] = token.split(":");
+  }
+
+  // const
   const handleClick = () => {
     dispatch(get_profile_info(id));
     navigate("/profile");
   };
-
 
   return (
     <>
