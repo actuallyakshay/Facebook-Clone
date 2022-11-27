@@ -34,6 +34,7 @@ import SingleLikeSection from "./SingleLikeSection";
 import LikesComponent from "./LikesComponent";
 import { POST_DELETE, PUT_LIKE } from "../../redux/Posts/post.actions";
 import { TbUserPlus } from "react-icons/tb";
+import axios from "axios";
 
 function PostComponent({ elem }) {
   const [like, setLike] = useState(false);
@@ -62,21 +63,21 @@ function PostComponent({ elem }) {
         },
       })
       .then((res) => {
-        if (res.data == "Deleted") {
-          dispatch(POST_DELETE(id, token));
+        if (res.data !== "Deleted") {
           toast({
             title: `Hey !! ${user?.fName} ❤️ `,
-            description: "post deleted successfully 😿",
-            status: "success",
+            description: "You are not authorised to do this step",
+            status: "warning",
             duration: 2000,
             position: "top",
             isClosable: true,
           });
         } else {
+          dispatch(POST_DELETE(id, token));
           toast({
             title: `Hey !! ${user?.fName} ❤️ `,
-            description: "You are not authorised to do this step",
-            status: "warning",
+            description: "post deleted successfully 😿",
+            status: "success",
             duration: 2000,
             position: "top",
             isClosable: true,
