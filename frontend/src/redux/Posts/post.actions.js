@@ -70,6 +70,7 @@ export const POST_DELETE = (id, token) => async (dispatch) => {
       }
     );
     dispatch(getAllPOSTS());
+    console.log("res.data",res.data)
   } catch (error) {
     console.log(error);
   }

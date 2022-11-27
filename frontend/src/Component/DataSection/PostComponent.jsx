@@ -54,17 +54,36 @@ function PostComponent({ elem }) {
     dispatch(PUT_LIKE(_id, body));
   };
 
-  // const handleDelete = (id) => {
-  //   // dispatch(POST_DELETE(id, token));
-  //   toast({
-  //     title: `Hey !! ${user?.fName} ❤️ `,
-  //     description: "post deleted successfully 😿",
-  //     status: "warning",
-  //     duration: 2000,
-  //     position: "top",
-  //     isClosable: true,
-  //   });
-  // };
+  const handleDelete = (id) => {
+    axios
+      .delete(`https://graceful-visor-slug.cyclic.app/data/${id}`, {
+        headers: {
+          token: token,
+        },
+      })
+      .then((res) => {
+        if (res.data == "Deleted") {
+          dispatch(POST_DELETE(id, token));
+          toast({
+            title: `Hey !! ${user?.fName} ❤️ `,
+            description: "post deleted successfully 😿",
+            status: "success",
+            duration: 2000,
+            position: "top",
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: `Hey !! ${user?.fName} ❤️ `,
+            description: "You are not authorised to do this step",
+            status: "warning",
+            duration: 2000,
+            position: "top",
+            isClosable: true,
+          });
+        }
+      });
+  };
 
   return (
     <>
@@ -96,7 +115,7 @@ function PostComponent({ elem }) {
               </VStack>
             </Box>
           </HStack>
-          {/* <Box
+          <Box
             ml="auto"
             p="2"
             borderRadius={"full"}
@@ -104,7 +123,7 @@ function PostComponent({ elem }) {
             onClick={() => handleDelete(elem?._id)}
           >
             <MdOutlineDelete />
-          </Box> */}
+          </Box>
         </HStack>
         <Text
           letterSpacing={".3px"}
