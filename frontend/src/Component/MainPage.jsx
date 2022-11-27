@@ -19,12 +19,12 @@ function MainPage() {
 
   let postData = posts.reverse();
 
-  let token = localStorage.getItem("token");
+  // let token = localStorage.getItem("token");
 
-  let email, id, password;
-  if (token) {
-    [email, id, password] = token.split(":");
-  }
+  // let email, id, password;
+  // if (token) {
+  //   [email, id, password] = token.split(":");
+  // }
 
   const [page, setPage] = useState(1);
 
@@ -51,7 +51,7 @@ function MainPage() {
               bg="white"
               borderRadius="0px"
               onClick={() => setPage(page - 1)}
-              disabled={page == 1 ? "true" : ""}
+              disabled={page == 1 ? true : false}
             >
               prev
             </Button>

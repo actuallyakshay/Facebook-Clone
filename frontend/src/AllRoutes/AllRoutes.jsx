@@ -18,7 +18,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <MainPage />
-            </PrivateRoute>
+             </PrivateRoute>
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -27,7 +27,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <CreateStory />
-            </PrivateRoute>
+             </PrivateRoute>
           }
         ></Route>
         <Route
@@ -43,7 +43,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <CreateStory />
-            </PrivateRoute>
+             </PrivateRoute>
           }
         ></Route>
         <Route
@@ -51,7 +51,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <StoryVisible />
-            </PrivateRoute>
+             </PrivateRoute>
           }
         ></Route>
         <Route path="/user" element={<UserPage />}></Route>
@@ -60,7 +60,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <ProfilePage />
-            </PrivateRoute>
+             </PrivateRoute>
           }
         ></Route>
       </Routes>
