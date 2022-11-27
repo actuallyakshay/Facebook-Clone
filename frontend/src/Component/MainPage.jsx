@@ -30,7 +30,6 @@ function MainPage() {
 
   useEffect(() => {
     dispatch(getAllPOSTS(page));
-    dispatch(getSingleUserDetails(id));
     dispatch(get_stories());
   }, [dispatch, page]);
 

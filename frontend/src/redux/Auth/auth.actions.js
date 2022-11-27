@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { get_profile_info } from "../SingleUserDetail/single.actions";
+import { getSingleUserDetails, get_profile_info } from "../SingleUserDetail/single.actions";
 import {
   GET_AUTH_ERROR,
   GET_AUTH_LOADING,
@@ -22,16 +22,20 @@ export const getAuth = (form) => (dispatch) => {
     );
 };
 
+export const getLOGIN = (form) => async (dispatch) => {
+  dispatch({ type: GET_AUTH_LOADING });
 
-export const getLOGIN = (form) => (dispatch) => {
-    dispatch({ type: GET_AUTH_LOADING });
-  axios
-    .post(`https://graceful-visor-slug.cyclic.app/user/login`, form)
-    .then((res) => {
-      dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
-      console.log(res.data);
-    })
-    .catch((err) => dispatch({ type: GET_AUTH_ERROR }));
+  try {
+    let res = await axios.post(
+      `https://graceful-visor-slug.cyclic.app/user/login`,
+      form
+    );
+    dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
+    let [email, id, passowrd] = res.data.token.split(":");
+    dispatch(getSingleUserDetails(id));
+  } catch (e) {
+    dispatch({ type: GET_AUTH_ERROR });
+  }
 };
 
 export const getUpdateProfile = (body, token, id) => (dispatch) => {
