@@ -4,9 +4,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   const navigate = useNavigate();
-  const token = useSelector((state) => state?.auth?.data?.token);
+  const isAuth = useSelector((state) => state?.auth?.data?.isAuth);
 
-  if (token == "" || token == undefined) {
+  if (!isAuth) {
     return <Navigate to="/login" />;
   }
 
