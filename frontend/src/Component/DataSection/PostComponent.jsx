@@ -63,26 +63,24 @@ function PostComponent({ elem }) {
         },
       })
       .then((res) => {
-        if (res.data !== "Deleted") {
-          toast({
-            title: `Hey !! ${user?.fName} ❤️ `,
-            description: "You are not authorised to do this step",
-            status: "warning",
-            duration: 2000,
-            position: "top",
-            isClosable: true,
-          });
-        } else {
-          dispatch(POST_DELETE(id, token));
-          toast({
-            title: `Hey !! ${user?.fName} ❤️ `,
-            description: "post deleted successfully 😿",
-            status: "success",
-            duration: 2000,
-            position: "top",
-            isClosable: true,
-          });
-        }
+        res.data !== "Deleted"
+          ? toast({
+              title: `Hey !! ${user?.fName} ❤️ `,
+              description: "You are not authorised to do this step",
+              status: "warning",
+              duration: 2000,
+              position: "top",
+              isClosable: true,
+            })
+          : dispatch(POST_DELETE(id, token)) &&
+            toast({
+              title: `Hey !! ${user?.fName} ❤️ `,
+              description: "post deleted successfully 😿",
+              status: "success",
+              duration: 2000,
+              position: "top",
+              isClosable: true,
+            });
       });
   };
 
