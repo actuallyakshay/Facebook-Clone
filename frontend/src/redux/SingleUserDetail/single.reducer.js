@@ -23,6 +23,7 @@ export const singleReducer = (state = iState, { type, payload }) => {
       };
 
     case SINGLE_SUCCESS:
+      console.log({ payload });
       return {
         ...state,
         singleUserData: payload,

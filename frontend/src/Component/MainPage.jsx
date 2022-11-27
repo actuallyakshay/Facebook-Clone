@@ -19,14 +19,8 @@ function MainPage() {
 
   let postData = posts.reverse();
 
-  // let token = localStorage.getItem("token");
-
-  // let email, id, password;
-  // if (token) {
-  //   [email, id, password] = token.split(":");
-  // }
-
   const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     dispatch(getAllPOSTS(page));

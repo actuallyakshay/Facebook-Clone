@@ -40,15 +40,16 @@ const set = [
 function ProfileInfoSection() {
   const navigate = useNavigate();
   const user = useSelector((state) => state?.singleUser?.singleUserData);
+  // const Profileinfo = useSelector((state) => state?.singleUser?.profileInfo);
   const dispatch = useDispatch();
   const token = useSelector((state) => state?.auth?.data?.token);
-
 
   const [email, id, password] = token.split(":");
   const handleClick = () => {
     dispatch(get_profile_info(id));
     navigate("/profile");
   };
+
 
   return (
     <>
@@ -90,7 +91,7 @@ function ProfileInfoSection() {
               </Button>
             </VStack>
           </MenuItem>
-          {set?.map((el,index) => {
+          {set?.map((el, index) => {
             return (
               <>
                 <Flex

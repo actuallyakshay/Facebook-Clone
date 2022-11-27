@@ -69,10 +69,7 @@ function ProfilePage() {
           image: res.data.url,
         };
         setloading(false);
-        dispatch(getUpdateProfile(body, token));
-        setTimeout(() => {
-          dispatch(get_profile_info(id));
-        }, 1);
+        dispatch(getUpdateProfile(body, token, id));
       })
       .catch((err) => console.log(err));
   };
@@ -101,7 +98,7 @@ function ProfilePage() {
       <Box shadow={"2xl"}>
         <Box position={"relative"} h="60vh" overflow="hidden" w="80%" m="auto">
           <Image
-            src={pInfo?.userDetails?.cover_image}
+            src={user?.userDetails?.cover_image}
             objectFit={"cover"}
             w="100%"
             h="100%"
@@ -117,14 +114,14 @@ function ProfilePage() {
             src={
               loading
                 ? "https://media3.giphy.com/media/nR4L10XlJcSeQ/200.webp?cid=ecf05e47fi1tj25pvrvkaazvwa3higj6famnd0q1gro8o8uv&rid=200.webp&ct=g"
-                : pInfo?.userDetails?.image
+                : user?.userDetails?.image
             }
             position={"relative"}
           />
 
           <VStack align="start" w="full" p="2">
             <Heading fontSize={{ base: "16px", md: "35px" }}>
-              {pInfo?.fName} {pInfo?.lName}
+              {user?.fName} {user?.lName}
             </Heading>
             <Text
               onClick={onOpen}
@@ -135,7 +132,7 @@ function ProfilePage() {
               _hover={{ cursor: "pointer" }}
             >
               {" "}
-              {pInfo?.friends?.length} friends
+              {user?.friends?.length} friends
             </Text>
             <Drawer
               isOpen={isOpen}
@@ -148,7 +145,7 @@ function ProfilePage() {
                 <DrawerCloseButton />
                 <DrawerHeader>Friends 🤜🤛</DrawerHeader>
                 <DrawerBody>
-                  {pInfo?.friends?.length == 0 ? (
+                  {user?.friends?.length == 0 ? (
                     <Box w="full">
                       <Text
                         letterSpacing={".5px"}
@@ -161,7 +158,7 @@ function ProfilePage() {
                     </Box>
                   ) : (
                     <VStack gap="1" align="start">
-                      {pInfo?.friends?.map((item) => {
+                      {user?.friends?.map((item) => {
                         return (
                           <>
                             <HStack gap="4" w="full">
@@ -202,7 +199,7 @@ function ProfilePage() {
               _hover={{ cursor: "pointer" }}
             >
               <AvatarGroup size="sm" max={8}>
-                {pInfo?.friends?.map((elem) => {
+                {user?.friends?.map((elem) => {
                   return <Avatar name="Segun Adebayo" src={elem?.user_image} />;
                 })}
               </AvatarGroup>

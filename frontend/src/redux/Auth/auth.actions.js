@@ -33,25 +33,30 @@ export const getLOGIN = (form) => async (dispatch) => {
       `https://graceful-visor-slug.cyclic.app/user/login`,
       form
     );
-     dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
-     console.log(res.data.token)
+    dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
+    console.log(res.data.token);
     let [email, id, passowrd] = res.data.token.split(":");
-     dispatch(getSingleUserDetails(id));
+    dispatch(getSingleUserDetails(id));
   } catch (e) {
     dispatch({ type: GET_AUTH_ERROR });
   }
 };
 
-export const getUpdateProfile = (body, token, id) => (dispatch) => {
-  console.log({ body, token });
-  axios
-    .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
-      headers: {
-        token: token,
-      },
-    })
-    .then((res) => dispatch(get_profile_info(id)))
-    .catch((e) => console.log(e.message));
+export const getUpdateProfile = (body, token, id) => async (dispatch) => {
+  try {
+    let res = await axios.patch(
+      `https://graceful-visor-slug.cyclic.app/user`,
+      body,
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
+    dispatch(getSingleUserDetails(id));
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
 export const sign_out_func = () => (dispatch) => {
