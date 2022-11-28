@@ -15,7 +15,7 @@ import {
 import { AiFillLike } from "react-icons/ai";
 import { TbUserPlus } from "react-icons/tb";
 
-function SingleComments({ user_name, user_image, title }) {
+function SingleComments({ user_name, user_image, title, _id }) {
   return (
     <HStack w="full" px="2" align="center">
       <Avatar size="sm" src={user_image} />

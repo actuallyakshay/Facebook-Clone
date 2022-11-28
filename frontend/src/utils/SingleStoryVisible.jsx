@@ -22,16 +22,23 @@ import { BsMessenger, BsFillHeartFill } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
 import { GiCottonFlower } from "react-icons/gi";
 import { FaHandsHelping } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { get_profile_info } from "../redux/SingleUserDetail/single.actions";
 
 const arr = ["💓", "🍁", "😍", "🙌", "🥰"];
 
 function StoryVisible() {
   const toast = useToast();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const singleObj = useSelector((state) => state?.story?.singleStory);
+
+  const handleGo = (id) => {
+    dispatch(get_profile_info(id));
+    navigate("/user");
+  };
 
   return (
     <>
@@ -75,7 +82,11 @@ function StoryVisible() {
 
           <br />
           <HStack>
-            <Avatar src={singleObj?.user?.userDetails?.image} size="lg" />
+            <Avatar
+              onClick={() => handleGo(singleObj?.user?._id)}
+              src={singleObj?.user?.userDetails?.image}
+              size="lg"
+            />
             <Heading size="sm" fontWeight={"500"}>
               {singleObj?.user?.fName} {singleObj?.user?.lName}
             </Heading>
@@ -113,7 +124,11 @@ function StoryVisible() {
               <IoIosNotifications size="15px" />
             </Box>
 
-            <Avatar size="md" src={singleObj?.user?.userDetails?.image} />
+            <Avatar
+              onClick={() => handleGo(singleObj?.user?._id)}
+              size="md"
+              src={singleObj?.user?.userDetails?.image}
+            />
           </HStack>
           <Grid
             w={{ base: "99%", md: "45%", lg: "50%" }}
@@ -127,6 +142,7 @@ function StoryVisible() {
           >
             <HStack position={"absolute"} top="2%" left="3%" spacing={"4"}>
               <Avatar
+                onClick={() => handleGo(singleObj?.user?._id)}
                 border="2px dashed #1877f2"
                 src={singleObj?.user?.userDetails?.image}
               />
