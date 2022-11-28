@@ -85,7 +85,7 @@ function Navbar() {
             spacing={4}
             justifyContent="center"
             alignItems={"center"}
-            w={{ base: "130px", lg: "200px" }}
+            w={{ base: "220px", lg: "200px" }}
             zIndex="45"
           >
             <InputGroup position="relative">
