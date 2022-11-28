@@ -27,12 +27,15 @@ import { useNavigate } from "react-router-dom";
 import FriendsShow from "../utils/FriendsShow";
 import { useState } from "react";
 import axios from "axios";
+import { get_profile_info } from "../redux/SingleUserDetail/single.actions";
+import { useDispatch } from "react-redux";
 
 function Navbar() {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(false);
   const [input, setInput] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (input == "") {
@@ -50,6 +53,7 @@ function Navbar() {
         setloading(false);
       });
   };
+
 
   return (
     <>
@@ -82,7 +86,7 @@ function Navbar() {
             justifyContent="center"
             alignItems={"center"}
             w={{ base: "130px", lg: "200px" }}
-            zIndex='45'
+            zIndex="45"
           >
             <InputGroup position="relative">
               <VStack
@@ -104,7 +108,10 @@ function Navbar() {
                 {data?.map((el) => {
                   return (
                     <Box zIndex={10} key={el._id} w="full">
-                      <FriendsShow zIndex={11} el={el} />
+                      <FriendsShow
+                        zIndex={11}
+                        el={el}
+                      />
                       <Divider />
                     </Box>
                   );

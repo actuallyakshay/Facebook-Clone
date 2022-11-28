@@ -47,7 +47,9 @@ function MainPage() {
         w="100%"
         bgColor={"#f0f2f5"}
       >
-        <Sidebar />
+        <Box display={{ base: "none", md: "flex" }}>
+          <Sidebar />
+        </Box>
         <Box>
           <Slidertab postData={postData} />
 

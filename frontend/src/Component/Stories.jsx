@@ -117,7 +117,7 @@ export default function Carousel() {
                 _hover={{ transform: "scale(1.1)", transformOrigin: "50% 50%" }}
                 transition="transform .5s"
                 objectFit={"cover"}
-                h="full"
+                h="100%"
               />
               <Text
                 position={"absolute"}
@@ -131,7 +131,7 @@ export default function Carousel() {
                 px="1"
                 borderRadius={"10px"}
               >
-                {el?.user?.fName} 
+                {el?.user?.fName}
               </Text>
             </Box>
           </>

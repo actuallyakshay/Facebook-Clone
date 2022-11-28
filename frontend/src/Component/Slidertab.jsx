@@ -22,6 +22,7 @@ function Slidertab({ postData }) {
         mx="auto"
         mt="5"
         h={{ base: "200px", sm: "210px", md: "250px", lg: "260px" }}
+        // h={"30vh"}
         borderRadius="10px"
         bgColor={"white"}
         px="0"

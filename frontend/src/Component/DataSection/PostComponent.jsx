@@ -35,12 +35,15 @@ import LikesComponent from "./LikesComponent";
 import { POST_DELETE, PUT_LIKE } from "../../redux/Posts/post.actions";
 import { TbUserPlus } from "react-icons/tb";
 import axios from "axios";
+import { get_profile_info } from "../../redux/SingleUserDetail/single.actions";
+import { useNavigate } from "react-router-dom";
 
 function PostComponent({ elem }) {
   const [like, setLike] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const userDetails = useSelector((state) => state?.singleUser?.singleUserData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const toast = useToast();
   const token = useSelector((state) => state?.auth?.data?.token);
   const user = useSelector((state) => state?.singleUser?.singleUserData);
@@ -53,6 +56,11 @@ function PostComponent({ elem }) {
       user_image: `${userDetails?.userDetails?.image}`,
     };
     dispatch(PUT_LIKE(_id, body));
+  };
+
+  const handleGo = (id) => {
+    dispatch(get_profile_info(id));
+    navigate("/user");
   };
 
   const handleDelete = (id) => {
@@ -102,7 +110,10 @@ function PostComponent({ elem }) {
         overflowX={"hidden"}
       >
         <HStack px="2" w="full" justifyContent={"space-between"}>
-          <HStack>
+          <HStack
+            _hover={{ cursor: "pointer" }}
+            onClick={() => handleGo(elem?.user?._id)}
+          >
             <Avatar src={elem?.user?.userDetails?.image} size="md" />
             <Box>
               <Text fontWeight={"500"} letterSpacing="1px" fontSize={"14px"}>
