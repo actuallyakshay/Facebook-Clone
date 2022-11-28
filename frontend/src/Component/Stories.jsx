@@ -122,13 +122,15 @@ export default function Carousel() {
               <Text
                 position={"absolute"}
                 color="black"
-                fontSize="13px"
+                fontSize="12px"
                 bottom="3%"
                 left="7%"
                 letterSpacing={".5px"}
-                fontWeight="500"
-                bg="white"
-                px="1"
+                fontWeight="400"
+                // bg="white"
+                border="1px dashed #1877f2"
+                px="2"
+                bg="#F8F8F8"
                 borderRadius={"10px"}
               >
                 {el?.user?.fName}

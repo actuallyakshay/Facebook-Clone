@@ -7,7 +7,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import React from "react";
 import { memo } from "react";
 const arr = [
