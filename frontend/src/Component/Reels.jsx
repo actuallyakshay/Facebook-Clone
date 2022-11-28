@@ -95,6 +95,7 @@ export default function Reels() {
               key={index}
               height="100%"
               ml="2"
+              allowfullscreen="true"
               borderRadius="8px"
               overflow={"hidden"}
               position="relative"
@@ -114,7 +115,6 @@ export default function Reels() {
                   aspectRatio: "10/12",
                 }}
               />
-             
             </Box>
           </>
         ))}

@@ -7,9 +7,9 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import React from "react";
 import { memo } from "react";
-import "./Sidebar.module.css";
 const arr = [
   { src: "https://i.postimg.cc/9Xsw-Rx42/group.png", title: "Friends" },
 
@@ -70,18 +70,19 @@ const arr = [
 
 function Sidebar() {
   return (
-    <Flex
+    <StyledFlex
+      className="sidebar"
       position="sticky"
       top="50px"
       h="90vh"
-      w={{base :'20vw', md:'12vw' , lg :"23vw"}}
+      w={{ base: "20vw", md: "12vw", lg: "23vw" }}
       flexDirection={"column"}
       paddingLeft="4"
       py="4"
       overflowY={"scroll"}
       gap="4"
     >
-      {arr?.map((el,index) => {
+      {arr?.map((el, index) => {
         return (
           <>
             <Flex key={index} alignItems={"center"} gap="3">
@@ -99,8 +100,19 @@ function Sidebar() {
           </>
         );
       })}
-    </Flex>
+    </StyledFlex>
   );
 }
 
 export default memo(Sidebar);
+
+const StyledFlex = styled(Flex)`
+  .sidebar::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: rgb(191, 188, 188);
+    border-radius: 20px;
+  }
+`;

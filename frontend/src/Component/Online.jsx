@@ -52,6 +52,7 @@ function Online() {
       user_image: image,
       type: "friends",
     };
+    console.log({body})
 
     axios
       .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
