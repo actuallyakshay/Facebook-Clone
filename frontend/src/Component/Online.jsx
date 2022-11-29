@@ -41,7 +41,7 @@ function Online() {
 
   const getUser = () => {
     axios
-      .get(`https://graceful-visor-slug.cyclic.app/user`)
+      .get(`${process.env.REACT_APP_URL}/user`)
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
@@ -55,7 +55,7 @@ function Online() {
     console.log({body})
 
     axios
-      .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
+      .patch(`${process.env.REACT_APP_URL}/user`, body, {
         headers: {
           token: token,
         },

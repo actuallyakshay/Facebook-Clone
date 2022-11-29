@@ -47,7 +47,7 @@ function Navbar() {
     setInput(e.target.value);
     setloading(true);
     axios
-      .get(`https://graceful-visor-slug.cyclic.app/user?q=${e.target.value}`)
+      .get(`${process.env.REACT_APP_URL}/user?q=${e.target.value}`)
       .then((res) => {
         setData(res.data);
         setloading(false);

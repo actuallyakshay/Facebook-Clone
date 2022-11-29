@@ -49,7 +49,7 @@ function FormInput({ onClose }) {
     }
     onClose();
     axios
-      .patch(`https://graceful-visor-slug.cyclic.app/user`, obj, {
+      .patch(`${process.env.REACT_APP_URL}/user`, obj, {
         headers: {
           token: token,
         },

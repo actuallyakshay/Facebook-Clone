@@ -90,7 +90,7 @@ function ProfilePage() {
     };
 
     axios
-      .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
+      .patch(`${process.env.REACT_APP_URL}/user`, body, {
         headers: {
           token: token,
         },
@@ -231,6 +231,7 @@ function ProfilePage() {
                       style={{ display: "none" }}
                       onChange={(e) => handleChange(e)}
                     />
+
                     <Text display={{ base: "none", md: "flex" }}>
                       {" "}
                       Edit profile Picture

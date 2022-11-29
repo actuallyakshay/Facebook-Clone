@@ -98,9 +98,25 @@ app.patch("/:id", async (req, res) => {
   }
 });
 
-app.delete("/:id", authMiddleWare, async (req, res) => {
-  let temp = await Data.findByIdAndDelete(req.params.id);
-  res.send("deleted Successfully");
+app.delete("/:id", async (req, res) => {
+  let [email, id, password] = req.headers.token.split(":");
+  try {
+    let temp = await Data.findOne({
+      _id: req.params.id,
+      user: idk,
+    });
+    if (temp) {
+      await Data.findOneAndDelete({
+        _id: req.params.id,
+        user: idk,
+      });
+      res.send("Deleted");
+    } else {
+      res.send("Not Deleted");
+    }
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
 module.exports = app;

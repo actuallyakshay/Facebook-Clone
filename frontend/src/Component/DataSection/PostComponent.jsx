@@ -65,7 +65,7 @@ function PostComponent({ elem }) {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://graceful-visor-slug.cyclic.app/data/${id}`, {
+      .delete(`${process.env.REACT_APP_URL}/data/${id}`, {
         headers: {
           token: token,
         },

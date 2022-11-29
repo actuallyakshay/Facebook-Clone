@@ -19,7 +19,7 @@ export const getAuth = (form) => (dispatch) => {
   console.log("form", form);
   dispatch({ type: GET_AUTH_SIGNUP_LOADING });
   axios
-    .post(`https://graceful-visor-slug.cyclic.app/user/signup`, form)
+    .post(`${process.env.REACT_APP_URL}/user/signup`, form)
     .then((res) =>
       dispatch({ type: GET_AUTH_SIGNUP_SUCCESS, payload: res.data })
     );
@@ -30,7 +30,7 @@ export const getLOGIN = (form) => async (dispatch) => {
 
   try {
     let res = await axios.post(
-      `https://graceful-visor-slug.cyclic.app/user/login`,
+      `${process.env.REACT_APP_URL}/user/login`,
       form
     );
     dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
@@ -45,7 +45,7 @@ export const getLOGIN = (form) => async (dispatch) => {
 export const getUpdateProfile = (body, token, id) => async (dispatch) => {
   try {
     let res = await axios.patch(
-      `https://graceful-visor-slug.cyclic.app/user`,
+      `${process.env.REACT_APP_URL}/user`,
       body,
       {
         headers: {
@@ -66,7 +66,7 @@ export const sign_out_func = () => (dispatch) => {
 // export const add_friend = (body, token) => (dispatch) => {
 //   const toast = useToast();
 //   axios
-//     .patch(`https://graceful-visor-slug.cyclic.app/user`, body, {
+//     .patch(`${process.env.REACT_APP_URL}/user`, body, {
 //       headers: {
 //         token: token,
 //       },

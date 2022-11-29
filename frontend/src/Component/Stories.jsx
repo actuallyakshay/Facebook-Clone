@@ -108,7 +108,8 @@ export default function Carousel() {
                 top="4%"
                 left="7%"
                 src={el?.user?.userDetails?.image}
-                border={"2px dashed #1877f2"}
+                // border={"2px dashed #1877f2"}
+                border={"2px dashed white"}
                 zIndex="3"
               />
               <Image

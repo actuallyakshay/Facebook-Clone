@@ -7,6 +7,7 @@ const app = express.Router();
 app.get("/:id", async (req, res) => {
   try {
     let users = await User.findOne({ _id: req.params.id });
+
     res.send(users);
   } catch (e) {
     res.send(e.message);
@@ -80,19 +81,26 @@ app.patch("", async (req, res) => {
   } = req.body;
 
   if (type == "friends") {
-    let friend = await User.findOne({
-      "friends.user_name": user_name,
-      "friends.user_image": user_image,
-    });
-    if (friend) {
+
+    let friend = await User.findById(_id);
+    if (
+      friend.find((el) => {
+        if (el.user_name == user_name) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    ) {
       return res.send("Already exist");
+    } else {
+      let temp = await User.findByIdAndUpdate(_id, {
+        $push: {
+          friends: { user_name, user_image },
+        },
+      });
+      res.send(temp);
     }
-    let temp = await User.findByIdAndUpdate(_id, {
-      $push: {
-        friends: { user_name, user_image },
-      },
-    });
-    res.send(temp);
   } else if (type == "followers") {
     let temp = await User.findByIdAndUpdate(_id, {
       $push: {

@@ -11,7 +11,7 @@ import {
 export const uploadPost = (body, token) => async (dispatch) => {
   try {
     let res = await axios.post(
-      `https://graceful-visor-slug.cyclic.app/data`,
+      `${process.env.REACT_APP_URL}/data`,
       body,
       {
         headers: {
@@ -28,7 +28,7 @@ export const uploadPost = (body, token) => async (dispatch) => {
 export const getAllPOSTS = (page) => async (dispatch) => {
   dispatch({ type: GET_POST_LOADING });
   await axios
-    .get(`https://graceful-visor-slug.cyclic.app/data?page=${page}&limit=20`)
+    .get(`${process.env.REACT_APP_URL}/data?page=${page}&limit=20`)
     .then((res) => {
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
     })
@@ -38,7 +38,7 @@ export const getAllPOSTS = (page) => async (dispatch) => {
 export const PUT_LIKE = (_id, body) => async (dispatch) => {
   try {
     let res = await axios.patch(
-      `https://graceful-visor-slug.cyclic.app/data/${_id}`,
+      `${process.env.REACT_APP_URL}/data/${_id}`,
       body
     );
     dispatch(getAllPOSTS());
@@ -50,7 +50,7 @@ export const PUT_LIKE = (_id, body) => async (dispatch) => {
 export const PUT_COMMENT = (_id, body) => async (dispatch) => {
   try {
     let res = await axios.patch(
-      `https://graceful-visor-slug.cyclic.app/data/${_id}`,
+      `${process.env.REACT_APP_URL}/data/${_id}`,
       body
     );
     dispatch(getAllPOSTS());
@@ -62,7 +62,7 @@ export const PUT_COMMENT = (_id, body) => async (dispatch) => {
 export const POST_DELETE = (id, token) => async (dispatch) => {
   try {
     let res = await axios.delete(
-      `https://graceful-visor-slug.cyclic.app/data/${id}`,
+      `${process.env.REACT_APP_URL}/data/${id}`,
       {
         headers: {
           token: token,
