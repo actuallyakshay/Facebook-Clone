@@ -29,10 +29,7 @@ export const getLOGIN = (form) => async (dispatch) => {
   dispatch({ type: GET_AUTH_LOADING });
 
   try {
-    let res = await axios.post(
-      `${process.env.REACT_APP_URL}/user/login`,
-      form
-    );
+    let res = await axios.post(`${process.env.REACT_APP_URL}/user/login`, form);
     dispatch({ type: GET_AUTH_SUCCESS, payload: res.data.token });
     console.log(res.data.token);
     let [email, id, passowrd] = res.data.token.split(":");
@@ -44,15 +41,11 @@ export const getLOGIN = (form) => async (dispatch) => {
 
 export const getUpdateProfile = (body, token, id) => async (dispatch) => {
   try {
-    let res = await axios.patch(
-      `${process.env.REACT_APP_URL}/user`,
-      body,
-      {
-        headers: {
-          token: token,
-        },
-      }
-    );
+    let res = await axios.patch(`${process.env.REACT_APP_URL}/user`, body, {
+      headers: {
+        token: token,
+      },
+    });
     dispatch(getSingleUserDetails(id));
   } catch (e) {
     console.log(e.message);

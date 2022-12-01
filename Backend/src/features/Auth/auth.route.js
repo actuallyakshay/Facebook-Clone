@@ -1,8 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const User = require("./auth.model");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URL = process.env.REDIRECT_URL;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const app = express.Router();
+
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URL
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 app.get("/:id", async (req, res) => {
   try {
@@ -49,10 +62,37 @@ app.post("/login", async (req, res) => {
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email: email });
+  const accessToken = await oAuth2Client.getAccessToken();
   if (user) {
     res.send("user already exist");
   } else {
     let user = await User.create(req.body);
+    let mailTransporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "actuallyakshay009@gmail.com",
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
+      },
+    });
+    let details = {
+      from: "AKSHAY RAJPUT 📩  <actuallyakshay009@gmail.com>",
+      to: email,
+      subject: `Welcome to my facebook`,
+      text: `I'am really help to see you here!
+       Please! explore this application `,
+    };
+    mailTransporter.sendMail(details, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email has sent");
+      }
+    });
+    console.log("first");
     res.send("Acc created Successfully");
   }
 });
@@ -81,7 +121,6 @@ app.patch("", async (req, res) => {
   } = req.body;
 
   if (type == "friends") {
-
     let friend = await User.findById(_id);
     if (
       friend.find((el) => {
@@ -141,6 +180,97 @@ app.patch("", async (req, res) => {
       }
     );
     res.send(temp);
+  }
+});
+
+let arr = [];
+
+app.patch("/getotp", async (req, res) => {
+  const { email } = req.body;
+  arr = [];
+  try {
+    let user = await User.findOne({ email });
+    const accessToken = await oAuth2Client.getAccessToken();
+    if (user) {
+      let temp = Math.floor(Math.random() * 10000) + 1;
+      arr.push(temp);
+      let mailTransporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          type: "OAuth2",
+          user: "actuallyakshay009@gmail.com",
+          clientId: CLIENT_ID,
+          clientSecret: CLIENT_SECRET,
+          refreshToken: REFRESH_TOKEN,
+          accessToken: accessToken,
+        },
+      });
+      let details = {
+        from: "AKSHAY RAJPUT 📩  <actuallyakshay009@gmail.com>",
+        to: email,
+        subject: `change your password`,
+        text: ` your otp is ${arr[0]}`,
+      };
+      mailTransporter.sendMail(details, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Email has sent");
+        }
+      });
+      res.send("otp has send");
+    } else {
+      return res.send("user not found");
+    }
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+app.patch("/resetpassword", async (req, res) => {
+  let { email, otp, password } = req.body;
+  try {
+    let user = await User.findOne({ email });
+    const accessToken = await oAuth2Client.getAccessToken();
+    if (user) {
+      if (otp == arr[0]) {
+        let temp = await User.findOneAndUpdate(
+          { email },
+          { $set: { password: password } }
+        );
+        let mailTransporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            type: "OAuth2",
+            user: "actuallyakshay009@gmail.com",
+            clientId: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            refreshToken: REFRESH_TOKEN,
+            accessToken: accessToken,
+          },
+        });
+        let details = {
+          from: "AKSHAY RAJPUT 📩  <actuallyakshay009@gmail.com>",
+          to: email,
+          subject: `PasswordUpdated`,
+          text: `Password Updated successfully, Please explore this application`,
+        };
+        mailTransporter.sendMail(details, (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Email has sent");
+          }
+        });
+        res.status(202).send(temp);
+      } else {
+        return res.status(403).send("Invalid otp");
+      }
+    } else {
+      res.status(404).send("No User found");
+    }
+  } catch (e) {
+    res.status(400).send(e.message);
   }
 });
 
