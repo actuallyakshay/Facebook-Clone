@@ -1,11 +1,11 @@
 require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
-const connect = require("./config/db");
-const authRoute = require("./features/Auth/auth.route");
+const connect = require("./src/config/db");
+const authRoute = require("./src/features/Auth/auth.route");
 const cors = require("cors");
-const dataRoute = require("./features/data/data.route");
-const storyRoute = require("./features/Story/story.route");
+const dataRoute = require("./src/features/data/data.route");
+const storyRoute = require("./src/features/Story/story.route");
 
 const app = express();
 app.use(express.json());
