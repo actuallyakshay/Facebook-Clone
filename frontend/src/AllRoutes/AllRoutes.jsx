@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import MainPage from "../Component/MainPage";
 import Login from "../Pages/Login";
 import ProfilePage from "../Pages/ProfileSection/ProfilePage";
+import UserStories from "../Pages/ProfileSection/UserStories";
 import CreateStory from "../utils/CreateStory";
 import StoryVisible from "../utils/SingleStoryVisible";
 import UserPage from "../utils/UserPage";
@@ -18,7 +19,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <MainPage />
-             </PrivateRoute>
+            </PrivateRoute>
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -27,7 +28,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <CreateStory />
-             </PrivateRoute>
+            </PrivateRoute>
           }
         ></Route>
         <Route
@@ -43,7 +44,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <CreateStory />
-             </PrivateRoute>
+            </PrivateRoute>
           }
         ></Route>
         <Route
@@ -51,7 +52,7 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <StoryVisible />
-             </PrivateRoute>
+            </PrivateRoute>
           }
         ></Route>
         <Route path="/user" element={<UserPage />}></Route>
@@ -60,7 +61,15 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <ProfilePage />
-             </PrivateRoute>
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/ownStory"
+          element={
+            <PrivateRoute>
+              <UserStories />
+            </PrivateRoute>
           }
         ></Route>
       </Routes>

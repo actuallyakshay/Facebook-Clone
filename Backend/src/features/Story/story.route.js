@@ -6,7 +6,6 @@ const app = express.Router();
 
 const authMiddleWare = async (req, res, next) => {
   let token = req.headers.token;
-  console.log({ token });
   if (!token) {
     return res.send("missing token");
   }
@@ -28,10 +27,24 @@ const authMiddleWare = async (req, res, next) => {
   }
 };
 
+app.get("/:id", async (req, res) => {
+  try {
+    let story = await Story.find({ user: req.params.id });
+    story.reverse();
+    res.send(story);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
 app.get("", async (req, res) => {
-  let story = await Story.find().populate(["user"]);
-  story.reverse();
-  res.send(story);
+  try {
+    let story = await Story.find().populate(["user"]);
+    story.reverse();
+    res.send(story);
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
 app.post("", authMiddleWare, async (req, res) => {
@@ -41,6 +54,15 @@ app.post("", authMiddleWare, async (req, res) => {
       user: req.userId,
     });
     res.send(temp);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+app.delete("/:id", async (req, res) => {
+  try {
+    let temp = await Story.findByIdAndDelete({ _id: req.params.id });
+    res.send("Deleted Successfully");
   } catch (e) {
     res.send(e.message);
   }

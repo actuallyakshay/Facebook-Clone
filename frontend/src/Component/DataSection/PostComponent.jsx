@@ -280,7 +280,7 @@ function PostComponent({ elem }) {
           borderRadius={"30px"}
           px="6"
           py="7px"
-          w="80%"
+          w="100%"
           align="start"
         >
           <Box mb="-2">
@@ -291,33 +291,6 @@ function PostComponent({ elem }) {
           <Text letterSpacing={".4px"} fontSize={"13px"} align="start" w="100%">
             {elem?.comments[0]?.title}
           </Text>
-        </VStack>
-        <VStack>
-          <Box
-            shadow="lg"
-            border="2px solid white"
-            borderRadius={"full"}
-            p="1"
-            bg="#1877f2"
-            h="fit-content"
-          >
-            <AiFillLike color="white" />
-          </Box>
-          <Box
-            shadow="lg"
-            borderRadius={"full"}
-            p="1"
-            bg="blackAlpha.100"
-            h="fit-content"
-            color={"black"}
-            _hover={{
-              bg: "blackAlpha.200",
-              cursor: "pointer",
-              color: "#1877f2",
-            }}
-          >
-            <TbUserPlus />
-          </Box>
         </VStack>
       </HStack>
     </VStack>

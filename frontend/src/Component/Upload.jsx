@@ -6,17 +6,46 @@ import {
   HStack,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { FcVideoCall, FcAddImage, FcNeutralDecision } from "react-icons/fc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadPost } from "../redux/Posts/post.actions";
 import FeelingsUpload from "./UplaodSection/FeelingsUpload";
 import PhotoUpload from "./UplaodSection/PhotosUpload";
 import VideoUpload from "./UplaodSection/VideoUpload";
-const name = "Akshay";
 
 function Upload() {
   const user = useSelector((state) => state?.singleUser?.singleUserData);
+  const [input, setInput] = useState("");
+  const toast = useToast();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state?.auth?.data?.token);
+
+  const handleChnage = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key == "Enter") {
+      let body = {
+        posts: {
+          caption: input,
+        },
+      };
+      dispatch(uploadPost(body, token));
+      toast({
+        title: `Hey !! ${user?.fName} `,
+        description: "Congrats !! post uploaded successfully",
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+      setInput("");
+    }
+  };
 
   return (
     <Box
@@ -32,12 +61,14 @@ function Upload() {
         <Avatar size="sm" src={user?.userDetails?.image} />
         <Input
           type="text"
-          placeholder={`What's on your mind, ${name}?`}
+          placeholder={`What's on your mind, ${user?.fName}? 💬`}
           size="sm"
           py="5"
           px="4"
           borderRadius={"20px"}
           bgColor="#f0f2f5"
+          onChange={handleChnage}
+          onKeyDown={handleKeyDown}
         />
       </HStack>
       <hr />

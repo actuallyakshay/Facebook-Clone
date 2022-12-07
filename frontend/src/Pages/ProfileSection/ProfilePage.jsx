@@ -66,10 +66,10 @@ function ProfilePage() {
   }, [dispatch]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  // const btnRef = React.useRef();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleProfile = (e) => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "Facebook");
@@ -142,7 +142,7 @@ function ProfilePage() {
             </Heading>
             <Text
               onClick={onOpen}
-              ref={btnRef}
+              // ref={btnRef}
               display={{ base: "none", md: "flex" }}
               fontWeight={"600"}
               color="blackAlpha.700"
@@ -155,7 +155,7 @@ function ProfilePage() {
               isOpen={isOpen}
               placement="right"
               onClose={onClose}
-              finalFocusRef={btnRef}
+              // finalFocusRef={btnRef}
             >
               <DrawerOverlay />
               <DrawerContent>
@@ -237,9 +237,8 @@ function ProfilePage() {
                       type={"file"}
                       accept="image/png, image/jpeg"
                       style={{ display: "none" }}
-                      onChange={(e) => handleChange(e)}
+                      onChange={(e) => handleProfile(e)}
                     />
-
                     <Text display={{ base: "none", md: "flex" }}>
                       {" "}
                       Edit profile Picture
@@ -261,6 +260,7 @@ function ProfilePage() {
           justifyContent="space-around"
         >
           <Text>About</Text>
+          <Text>Stories</Text>
           <Text>posts</Text>
         </HStack>
       </Box>

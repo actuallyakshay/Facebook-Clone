@@ -15,7 +15,7 @@ import React, { useEffect } from "react";
 import { SocialIcon } from "react-social-icons";
 import { SearchIcon } from "@chakra-ui/icons";
 import { AiFillHome } from "react-icons/ai";
-import { MdOutlineOndemandVideo } from "react-icons/md";
+import { MdOutlineOndemandVideo, MdWebStories } from "react-icons/md";
 import { AiOutlineShop } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
 import { SiFacebookgaming } from "react-icons/si";
@@ -53,7 +53,6 @@ function Navbar() {
         setloading(false);
       });
   };
-
 
   return (
     <>
@@ -108,10 +107,7 @@ function Navbar() {
                 {data?.map((el) => {
                   return (
                     <Box zIndex={10} key={el._id} w="full">
-                      <FriendsShow
-                        zIndex={11}
-                        el={el}
-                      />
+                      <FriendsShow zIndex={11} el={el} />
                       <Divider />
                     </Box>
                   );
@@ -139,13 +135,13 @@ function Navbar() {
           ml="-14"
           display={{ base: "none", lg: "flex" }}
         >
-          <AiFillHome
-            size="25px"
-            _hover={{ cursor: "pointer" }}
-            onClick={() => navigate("/")}
-          />
+          <Box _hover={{ cursor: "pointer" }}>
+            <AiFillHome size="25px" onClick={() => navigate("/")} />
+          </Box>
           <MdOutlineOndemandVideo size="25px" />
-          <AiOutlineShop size="25px" />
+          <Box _hover={{ cursor: "pointer" }}>
+            <MdWebStories onClick={() => navigate("/ownStory")} size="25px" />
+          </Box>
           <HiUserGroup size="23px" />
           <SiFacebookgaming size="20px" />
         </HStack>

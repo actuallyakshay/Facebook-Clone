@@ -49,7 +49,7 @@ function Slidertab({ postData }) {
             <Carousel />
           </TabPanel>
           <TabPanel position={"relative"}>
-            <Reels />
+            {/* <Reels /> */}
           </TabPanel>
           <TabPanel position={"relative"}>
             <Rooms />
