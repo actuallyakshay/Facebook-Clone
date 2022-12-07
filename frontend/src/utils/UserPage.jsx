@@ -48,6 +48,7 @@ import {
   MdWorkOff,
 } from "react-icons/md";
 import PostComponent from "../Component/DataSection/PostComponent";
+import Loader from "./Loader";
 
 function UserPage() {
   const [image, setImage] = useState("");
@@ -57,14 +58,21 @@ function UserPage() {
   const token = useSelector((state) => state?.auth?.data?.token);
   const user = useSelector((state) => state?.singleUser?.singleUserData);
   const pInfo = useSelector((state) => state?.singleUser?.profileInfo);
+  const pINFOLOADING = useSelector((state) => state?.singleUser?.pINFOLOADING);
   const userPosts = useSelector((state) => state?.singleUser?.userPosts);
 
-  const [email, id, password] = token.split(":");
+  let email, id, password;
+
+  if (token !== undefined) {
+    [email, id, password] = token.split(":");
+  }
 
   useEffect(() => {}, [dispatch]);
   const btnRef = React.useRef();
 
-  return (
+  return pINFOLOADING ? (
+    <Loader />
+  ) : (
     <>
       <Navbar />
       <Box shadow={"2xl"}>
@@ -110,8 +118,14 @@ function UserPage() {
               _hover={{ cursor: "pointer" }}
             >
               <AvatarGroup size="sm" max={8}>
-                {pInfo?.friends?.map((elem) => {
-                  return <Avatar name="Segun Adebayo" src={elem?.user_image} />;
+                {pInfo?.friends?.map((elem, i) => {
+                  return (
+                    <Avatar
+                      key={i}
+                      name="Segun Adebayo"
+                      src={elem?.user_image}
+                    />
+                  );
                 })}
               </AvatarGroup>
             </Flex>
@@ -145,7 +159,7 @@ function UserPage() {
             py="1"
             position={{ base: "", md: "sticky" }}
             top="10%"
-            h="90vh"
+            h="110vh"
             overflow={"auto"}
           >
             <Heading size="sm">Intro</Heading>
@@ -282,9 +296,9 @@ function UserPage() {
               </HStack>
             </VStack>
           </VStack>
-          <VStack h="400vh" pt="0" w="full">
-            {userPosts?.map((elem) => {
-              return <PostComponent elem={elem} />;
+          <VStack pt="0" w="full">
+            {userPosts?.map((elem, i) => {
+              return <PostComponent key={i} elem={elem} />;
             })}
           </VStack>
         </Grid>

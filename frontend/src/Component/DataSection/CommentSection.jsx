@@ -30,6 +30,7 @@ function CommentSection({ id, elem }) {
       title: title,
     };
     dispatch(PUT_COMMENT(id, body));
+    setTitle("")
   };
 
   return (

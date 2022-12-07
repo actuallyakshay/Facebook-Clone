@@ -58,8 +58,8 @@ function Slidertab({ postData }) {
       </Tabs>
       <br />
       <Upload />
-      {postData?.map((elem) => {
-        return <PostComponent elem={elem} />;
+      {postData?.map((elem,i) => {
+        return <PostComponent key={i} elem={elem} />;
       })}
     </Flex>
   );

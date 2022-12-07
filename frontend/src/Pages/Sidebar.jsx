@@ -10,6 +10,7 @@ import {
 import styled from "styled-components";
 import React from "react";
 import { memo } from "react";
+import "../Component/Online.css";
 const arr = [
   { src: "https://i.postimg.cc/9Xsw-Rx42/group.png", title: "Friends" },
 
@@ -70,8 +71,7 @@ const arr = [
 
 function Sidebar() {
   return (
-    <StyledFlex
-      className="sidebar"
+    <Flex
       position="sticky"
       top="50px"
       h="90vh"
@@ -81,38 +81,26 @@ function Sidebar() {
       py="4"
       overflowY={"scroll"}
       gap="4"
+      className="online"
     >
       {arr?.map((el, index) => {
         return (
-          <>
-            <Flex key={index} alignItems={"center"} gap="3">
-              <Avatar size="xs" src={el.src} _hover={{ cursor: "pointer" }} />
-              <Text
-                display={{ base: "none", lg: "block" }}
-                color="#050505"
-                fontSize={"13px"}
-                fontWeight="500"
-                _hover={{ cursor: "pointer" }}
-              >
-                {el.title}
-              </Text>
-            </Flex>
-          </>
+          <Flex key={index} alignItems={"center"} gap="3">
+            <Avatar size="xs" src={el.src} _hover={{ cursor: "pointer" }} />
+            <Text
+              display={{ base: "none", lg: "block" }}
+              color="#050505"
+              fontSize={"13px"}
+              fontWeight="500"
+              _hover={{ cursor: "pointer" }}
+            >
+              {el.title}
+            </Text>
+          </Flex>
         );
       })}
-    </StyledFlex>
+    </Flex>
   );
 }
 
 export default memo(Sidebar);
-
-const StyledFlex = styled(Flex)`
-  .sidebar::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  .sidebar::-webkit-scrollbar-thumb {
-    background-color: rgb(191, 188, 188);
-    border-radius: 20px;
-  }
-`;

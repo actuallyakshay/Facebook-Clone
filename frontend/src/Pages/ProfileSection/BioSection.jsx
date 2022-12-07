@@ -38,7 +38,7 @@ function BioSection() {
         py="1"
         position={{ base: "", md: "sticky" }}
         top="10%"
-        h="90vh"
+        h="110vh"
         overflow={"auto"}
       >
         <Heading size="sm">Intro</Heading>

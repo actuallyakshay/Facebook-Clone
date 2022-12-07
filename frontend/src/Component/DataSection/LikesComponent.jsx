@@ -31,19 +31,18 @@ function LikesComponent({ elem }) {
         px="2"
         w="full"
       >
-        {/* <Text>Lavi kumar, himanshu kumar & 89 others</Text> */}
         <Text> likes count : {elem?.length}</Text>
       </HStack>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Likes 👍</ModalHeader>
+        <ModalContent maxW="300px" >
+          <ModalHeader>Likes 👍 : {elem?.length} </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {elem?.length != 0 ? (
-              <VStack gap="3" pb="3">
-                {elem?.map((el) => {
-                  return <SingleLikeSection {...el} />;
+              <VStack gap="3" pb="3" align="start">
+                {elem?.map((el, i) => {
+                  return <SingleLikeSection key={i} {...el} />;
                 })}
               </VStack>
             ) : (

@@ -83,6 +83,7 @@ function FormInput({ onClose }) {
             value={form.status}
             size="sm"
             type="text"
+            placeholder="Single/Mingle ? 😙"
           />
         </label>
       </HStack>
@@ -95,7 +96,7 @@ function FormInput({ onClose }) {
             value={form.bio}
             size="sm"
             type="text"
-            placeholder="origin city"
+            placeholder="update your bio"
           />
         </label>
       </HStack>

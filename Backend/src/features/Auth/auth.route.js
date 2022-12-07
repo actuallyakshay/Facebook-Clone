@@ -187,6 +187,7 @@ let arr = [];
 
 app.patch("/getotp", async (req, res) => {
   const { email } = req.body;
+  console.log({email})
   arr = [];
   try {
     let user = await User.findOne({ email });

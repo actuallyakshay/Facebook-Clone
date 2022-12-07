@@ -98,29 +98,27 @@ function ProfileInfoSection() {
           </MenuItem>
           {set?.map((el, index) => {
             return (
-              <>
-                <Flex
-                  justifyContent={"space-between"}
-                  alignItems="center"
-                  _hover={{ cursor: "pointer" }}
-                  key={index}
-                >
-                  <Flex mb="4">
-                    <Flex alignItems={"center"} gap="3">
-                      <Box p="2" borderRadius={"50%"} bgColor="blackAlpha.200">
-                        {el.icon}
-                      </Box>
+              <Flex
+                justifyContent={"space-between"}
+                alignItems="center"
+                _hover={{ cursor: "pointer" }}
+                key={index}
+              >
+                <Flex mb="4">
+                  <Flex alignItems={"center"} gap="3">
+                    <Box p="2" borderRadius={"50%"} bgColor="blackAlpha.200">
+                      {el.icon}
+                    </Box>
 
-                      <Text fontWeight="500" fontSize="13px">
-                        {el.title}
-                      </Text>
-                    </Flex>
-                  </Flex>
-                  <Flex>
-                    <SlArrowRight />
+                    <Text fontWeight="500" fontSize="13px">
+                      {el.title}
+                    </Text>
                   </Flex>
                 </Flex>
-              </>
+                <Flex>
+                  <SlArrowRight />
+                </Flex>
+              </Flex>
             );
           })}
 

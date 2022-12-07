@@ -36,6 +36,7 @@ app.get("", async (req, res) => {
   const { page, limit } = req.query;
   let data = await Data.find()
     .populate(["user"])
+    .sort({ createdAt: -1 })
     .limit(limit)
     .skip((page - 1) * limit);
   res.send(data);
@@ -99,7 +100,7 @@ app.patch("/:id", async (req, res) => {
 });
 
 app.delete("/:id", async (req, res) => {
-  let [email, id, password] = req.headers.token.split(":");
+  let [email, idk, password] = req.headers.token.split(":");
   try {
     let temp = await Data.findOne({
       _id: req.params.id,

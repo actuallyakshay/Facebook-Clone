@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   PROFILE_INFO,
+  PROFILE_INFO_LOADING,
   SINGLE_ERROR,
   SINGLE_LOADING,
   SINGLE_SUCCESS,
@@ -16,6 +17,7 @@ export const getSingleUserDetails = (_id) => (dispatch) => {
 };
 
 export const get_profile_info = (id) => (dispatch) => {
+  dispatch({ type: PROFILE_INFO_LOADING });
   axios
     .get(`${process.env.REACT_APP_URL}/user/${id}`)
     .then((res) => {

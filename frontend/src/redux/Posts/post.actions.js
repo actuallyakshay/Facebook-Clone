@@ -28,7 +28,7 @@ export const uploadPost = (body, token) => async (dispatch) => {
 export const getAllPOSTS = (page) => async (dispatch) => {
   dispatch({ type: GET_POST_LOADING });
   await axios
-    .get(`${process.env.REACT_APP_URL}/data?page=${page}&limit=20`)
+    .get(`${process.env.REACT_APP_URL}/data?page=${page}&limit=10`)
     .then((res) => {
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
     })

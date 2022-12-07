@@ -75,6 +75,7 @@ function Login() {
     axios
       .patch(`${process.env.REACT_APP_URL}/user/getotp`, body)
       .then((res) => {
+        console.log("res.send", res.data);
         if (res.data == "user not found") {
           toast({
             title: "Hey !! This acc doesn't exist",

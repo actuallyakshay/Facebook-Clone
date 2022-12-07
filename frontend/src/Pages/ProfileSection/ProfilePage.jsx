@@ -38,6 +38,7 @@ import {
   getSingleUserDetails,
   get_profile_info,
 } from "../../redux/SingleUserDetail/single.actions";
+import Loader from "../../utils/Loader";
 import CoverPhoto from "./CoverPhoto";
 import ProfileGrid from "./ProfileGrid";
 
@@ -49,15 +50,20 @@ function ProfilePage() {
   const token = useSelector((state) => state?.auth?.data?.token);
   const user = useSelector((state) => state?.singleUser?.singleUserData);
   const pInfo = useSelector((state) => state?.singleUser?.profileInfo);
+  const singleLoading = useSelector(
+    (state) => state?.singleUser?.singleLoading
+  );
   const userPosts = useSelector((state) => state?.singleUser?.userPosts);
 
-  const [email, id, password] = token.split(":");
+  let email, id, password;
+
+  if (token !== undefined) {
+    [email, id, password] = token.split(":");
+  }
 
   useEffect(() => {
     getSingleUserDetails(id);
   }, [dispatch]);
-
-  console.log("akshay", user);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -101,7 +107,9 @@ function ProfilePage() {
       });
   };
 
-  return (
+  return singleLoading ? (
+    <Loader />
+  ) : (
     <>
       <Navbar />
       <Box shadow={"2xl"}>

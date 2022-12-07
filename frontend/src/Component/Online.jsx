@@ -27,6 +27,7 @@ import { get_profile_info } from "../redux/SingleUserDetail/single.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add_friend } from "../redux/Auth/auth.actions";
+import "./Online.css";
 
 function Online() {
   const [user, setUsers] = useState([]);
@@ -35,6 +36,12 @@ function Online() {
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.data?.token);
 
+  let email, id, password;
+
+  if (token !== undefined) {
+    [email, id, password] = token.split(":");
+  }
+
   useEffect(() => {
     getUser();
   }, []);
@@ -42,7 +49,12 @@ function Online() {
   const getUser = () => {
     axios
       .get(`${process.env.REACT_APP_URL}/user`)
-      .then((res) => setUsers(res.data))
+      .then((res) => {
+        let validate = res.data?.filter((el) => {
+          return el._id != id;
+        });
+        setUsers(validate);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -52,7 +64,7 @@ function Online() {
       user_image: image,
       type: "friends",
     };
-    console.log({body})
+    console.log({ body });
 
     axios
       .patch(`${process.env.REACT_APP_URL}/user`, body, {
@@ -100,6 +112,7 @@ function Online() {
       overflowY={"scroll"}
       overflowX={"hidden"}
       gap="4"
+      className="online"
     >
       <Flex>
         <Heading color="blackAlpha.600" fontSize="17px" fontWeight={"500"}>
@@ -141,12 +154,12 @@ function Online() {
               <Text
                 display={{ base: "none", md: "block" }}
                 color="#050505"
-                fontSize={"15px"}
+                fontSize={"14px"}
                 fontWeight="500"
                 _hover={{ cursor: "pointer" }}
                 onClick={() => handleClick(el._id)}
               >
-                {el?.fName} {el?.lName}
+                {el?.fName.substring(0, 8)} {el?.lName}
               </Text>
               <Button
                 size="sm"

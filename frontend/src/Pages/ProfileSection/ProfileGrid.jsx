@@ -2,6 +2,7 @@ import { Box, Grid, HStack, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { BsHandIndexFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import PostComponent from "../../Component/DataSection/PostComponent";
 import Upload from "../../Component/Upload";
@@ -20,8 +21,8 @@ function ProfileGrid({ userPosts }) {
       >
         <BioSection />
         <VStack h="400vh" pt="0" w="full">
-          {userPosts?.map((elem) => {
-            return <PostComponent elem={elem} />;
+          {userPosts?.map((elem, index) => {
+            return <PostComponent key={index} elem={elem} />;
           })}
         </VStack>
       </Grid>

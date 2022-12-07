@@ -1,5 +1,6 @@
 import {
   PROFILE_INFO,
+  PROFILE_INFO_LOADING,
   SINGLE_ERROR,
   SINGLE_LOADING,
   SINGLE_SUCCESS,
@@ -12,6 +13,7 @@ const iState = {
   singleUserData: {},
   profileInfo: {},
   userPosts: [],
+  pINFOLOADING: false,
 };
 
 export const singleReducer = (state = iState, { type, payload }) => {
@@ -26,6 +28,7 @@ export const singleReducer = (state = iState, { type, payload }) => {
       return {
         ...state,
         singleUserData: payload,
+        singleLoading: false,
       };
 
     case SINGLE_ERROR:
@@ -33,10 +36,18 @@ export const singleReducer = (state = iState, { type, payload }) => {
         ...state,
         singleError: true,
       };
+
+    case PROFILE_INFO_LOADING:
+      return {
+        ...state,
+        pINFOLOADING: true,
+      };
+
     case PROFILE_INFO:
       return {
         ...state,
         profileInfo: payload,
+        pINFOLOADING: false,
       };
 
     case USER_DATA:

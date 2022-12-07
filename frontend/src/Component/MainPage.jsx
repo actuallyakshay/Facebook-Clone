@@ -11,14 +11,14 @@ import { getSingleUserDetails } from "../redux/SingleUserDetail/single.actions";
 import Navbar from "./Navbar";
 import { get_stories } from "../redux/Story/story.actions";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import Loader from "../utils/Loader";
 
 function MainPage() {
   const dispatch = useDispatch();
-
-  const posts = useSelector((state) => state?.post?.postsData);
+  const postData = useSelector((state) => state?.post?.postsData);
+  const postLoading = useSelector((state) => state?.post?.postLoading);
   const isAuth = useSelector((state) => state?.auth?.data?.isAuth);
-
-  let postData = posts.reverse();
 
   const [page, setPage] = useState(1);
   let token = localStorage.getItem("token");
@@ -28,8 +28,6 @@ function MainPage() {
     [email, id, password] = token.split(":");
   }
 
-  console.log({ id });
-
   useEffect(() => {
     dispatch(getAllPOSTS(page));
     dispatch(get_stories());
@@ -37,6 +35,10 @@ function MainPage() {
       dispatch(getSingleUserDetails(id));
     }
   }, [dispatch, page]);
+
+  if (!isAuth) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <>
@@ -62,7 +64,7 @@ function MainPage() {
             >
               prev
             </Button>
-            <Button bg="white" borderRadius="0px">
+            <Button border="1px dashed gray" bg="white" borderRadius="0px">
               {page}
             </Button>
             <Button
