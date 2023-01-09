@@ -11,6 +11,9 @@ import styled from "styled-components";
 import React from "react";
 import { memo } from "react";
 import "../Component/Online.css";
+import { useDispatch, useSelector } from "react-redux";
+import { get_profile_info } from "../redux/SingleUserDetail/single.actions";
+import { useNavigate } from "react-router-dom";
 const arr = [
   { src: "https://i.postimg.cc/9Xsw-Rx42/group.png", title: "Friends" },
 
@@ -70,19 +73,51 @@ const arr = [
 ];
 
 function Sidebar() {
+  const user = useSelector((state) => state?.singleUser?.singleUserData);
+  const token = useSelector((state) => state?.auth?.data?.token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  let email, id, password;
+
+  if (token) {
+    [email, id, password] = token.split(":");
+  }
+
+  const handleClick = () => {
+    dispatch(get_profile_info(id));
+    navigate("/profile");
+  };
+
   return (
     <Flex
       position="sticky"
-      top="50px"
+      top="55px"
       h="90vh"
       w={{ base: "20vw", md: "12vw", lg: "23vw" }}
       flexDirection={"column"}
       paddingLeft="4"
       py="4"
-      overflowY={"scroll"}
+      overflowY={"hidden"}
       gap="4"
       className="online"
     >
+      <Flex
+        _hover={{ cursor: "pointer" }}
+        alignItems={"center"}
+        gap="3"
+        onClick={() => handleClick()}
+      >
+        <Avatar size="sm" src={user?.userDetails?.image} />
+        <Text
+          display={{ base: "none", lg: "block" }}
+          color="#050505"
+          fontSize={"14px"}
+          fontWeight="500"
+          _hover={{ cursor: "pointer" }}
+        >
+          {user?.fName} {user?.lName}
+        </Text>
+      </Flex>
       {arr?.map((el, index) => {
         return (
           <Flex key={index} alignItems={"center"} gap="3">

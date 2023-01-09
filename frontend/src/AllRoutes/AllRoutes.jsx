@@ -2,6 +2,8 @@ import React from "react";
 
 import { Routes, Route } from "react-router-dom";
 import MainPage from "../Component/MainPage";
+import Messenger from "../Messenger/Messenger";
+import FriendRequestPage from "../Notification/FriendRequestPage";
 import Login from "../Pages/Login";
 import ProfilePage from "../Pages/ProfileSection/ProfilePage";
 import UserStories from "../Pages/ProfileSection/UserStories";
@@ -69,6 +71,14 @@ function AllRoutes() {
           element={
             <PrivateRoute>
               <UserStories />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/messenger"
+          element={
+            <PrivateRoute>
+              <Messenger />
             </PrivateRoute>
           }
         ></Route>

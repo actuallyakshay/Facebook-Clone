@@ -10,8 +10,28 @@ const userSchema = new mongoose.Schema(
     month: { type: String },
     year: { type: String },
     gender: { type: String, enum: ["Male", "Female", "Others"] },
-    friends: [{ user_name: { type: String }, user_image: { type: String } }],
-    followers: [{ user_name: { type: String }, user_image: { type: String } }],
+    friends: [
+      {
+        fName: { type: String },
+        lName: { type: String },
+        user_image: { type: String },
+      },
+    ],
+    followers: [
+      {
+        fName: { type: String },
+        lName: { type: String },
+        user_image: { type: String },
+      },
+    ],
+    notify: [
+      {
+        fName: { type: String },
+        lName: { type: String },
+        user_image: { type: String },
+        response: { type: String },
+      },
+    ],
     userDetails: {
       image: { type: String },
       cover_image: { type: String },

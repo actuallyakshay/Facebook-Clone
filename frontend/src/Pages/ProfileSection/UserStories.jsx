@@ -67,7 +67,6 @@ function UserStories() {
             {stories?.map((elem, i) => {
               return (
                 <VStack
-                  // border="1px solid green"
                   shadow={"lg"}
                   bg="white"
                   key={i}
@@ -101,7 +100,7 @@ function UserStories() {
             })}
           </Grid>
         ) : (
-          <Box h="100vh">
+          <Box h="80vh">
             <br />
             <VStack gap="5">
               <Text

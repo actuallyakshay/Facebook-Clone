@@ -37,6 +37,7 @@ import { TbUserPlus } from "react-icons/tb";
 import axios from "axios";
 import { get_profile_info } from "../../redux/SingleUserDetail/single.actions";
 import { useNavigate } from "react-router-dom";
+import { BiTask } from "react-icons/bi";
 
 function PostComponent({ elem }) {
   const [like, setLike] = useState(false);
@@ -107,6 +108,7 @@ function PostComponent({ elem }) {
       bg="white"
       overflowX={"hidden"}
       mt="8"
+      border={"1px solid #E8E8E8"}
     >
       <HStack px="2" w="full" justifyContent={"space-between"}>
         <HStack
@@ -298,3 +300,6 @@ function PostComponent({ elem }) {
 }
 
 export default PostComponent;
+
+
+

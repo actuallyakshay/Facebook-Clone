@@ -61,12 +61,13 @@ function ProfilePage() {
     [email, id, password] = token.split(":");
   }
 
+
   useEffect(() => {
     getSingleUserDetails(id);
   }, [dispatch]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const btnRef = React.useRef();
+  const btnRef = React.useRef();
   const navigate = useNavigate();
 
   const handleProfile = (e) => {
@@ -88,11 +89,15 @@ function ProfilePage() {
       .catch((err) => console.log(err));
   };
 
-  const hanldeRemoveFriend = (image, name) => {
+  const hanldeRemoveFriend = (image, addF, addL) => {
     let body = {
-      user_name: name,
-      user_image: image,
+      addF,
+      addL,
+      addI: image,
       type: "removeFriend",
+      selfF: user?.fName,
+      selfL: user.lName,
+      selfI: user?.userDetails?.image,
     };
 
     axios
@@ -107,9 +112,7 @@ function ProfilePage() {
       });
   };
 
-  return singleLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
       <Box shadow={"2xl"}>
@@ -142,7 +145,7 @@ function ProfilePage() {
             </Heading>
             <Text
               onClick={onOpen}
-              // ref={btnRef}
+              ref={btnRef}
               display={{ base: "none", md: "flex" }}
               fontWeight={"600"}
               color="blackAlpha.700"
@@ -155,7 +158,7 @@ function ProfilePage() {
               isOpen={isOpen}
               placement="right"
               onClose={onClose}
-              // finalFocusRef={btnRef}
+              finalFocusRef={btnRef}
             >
               <DrawerOverlay />
               <DrawerContent>
@@ -181,7 +184,7 @@ function ProfilePage() {
                             <HStack gap="4" w="full">
                               <Avatar size="md" src={item?.user_image} />
                               <Heading letterSpacing={".5px"} size="sm">
-                                {item?.user_name}
+                                {item?.fName} {item?.lName}
                               </Heading>
                               <Box ml="auto" w="fit-content">
                                 <Button
@@ -191,7 +194,8 @@ function ProfilePage() {
                                   onClick={() =>
                                     hanldeRemoveFriend(
                                       item?.user_image,
-                                      item?.user_name
+                                      item?.fName,
+                                      item?.lName
                                     )
                                   }
                                 >

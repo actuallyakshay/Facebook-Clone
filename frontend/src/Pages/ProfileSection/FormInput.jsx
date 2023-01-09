@@ -157,6 +157,9 @@ function FormInput({ onClose }) {
           w="full"
         >
           <option name="intersted_in" value="Men">
+            Select Option
+          </option>
+          <option name="intersted_in" value="Men">
             Men
           </option>
           <option name="intersted_in" value="Women">

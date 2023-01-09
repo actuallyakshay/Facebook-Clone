@@ -27,6 +27,7 @@ function Slidertab({ postData }) {
         bgColor={"white"}
         px="0"
         paddingBottom={"1"}
+        border={"1px solid #E8E8E8"}
       >
         <TabList
           w="100%"
@@ -41,7 +42,7 @@ function Slidertab({ postData }) {
             Reels
           </Tab>
           <Tab py="4" fontSize="13px" letterSpacing={"1px"} fontWeight="500">
-            Rooms
+            Groups
           </Tab>
         </TabList>
         <TabPanels>
@@ -49,7 +50,7 @@ function Slidertab({ postData }) {
             <Carousel />
           </TabPanel>
           <TabPanel position={"relative"}>
-            {/* <Reels /> */}
+            <Reels />
           </TabPanel>
           <TabPanel position={"relative"}>
             <Rooms />
@@ -58,7 +59,7 @@ function Slidertab({ postData }) {
       </Tabs>
       <br />
       <Upload />
-      {postData?.map((elem,i) => {
+      {postData?.map((elem, i) => {
         return <PostComponent key={i} elem={elem} />;
       })}
     </Flex>

@@ -9,7 +9,18 @@ import {
   InputGroup,
   InputLeftElement,
   Stack,
+  Text,
   VStack,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  Portal,
+  Heading,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { SocialIcon } from "react-social-icons";
@@ -28,7 +39,9 @@ import FriendsShow from "../utils/FriendsShow";
 import { useState } from "react";
 import axios from "axios";
 import { get_profile_info } from "../redux/SingleUserDetail/single.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import "./Online.css";
+import FriendRequestPage from "../Notification/FriendRequestPage";
 
 function Navbar() {
   const [data, setData] = useState([]);
@@ -36,6 +49,7 @@ function Navbar() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state?.singleUser?.singleUserData);
 
   useEffect(() => {
     if (input == "") {
@@ -103,6 +117,7 @@ function Navbar() {
                 px="2"
                 py="1"
                 zIndex={10}
+                className="online"
               >
                 {data?.map((el) => {
                   return (
@@ -142,7 +157,7 @@ function Navbar() {
           <Box _hover={{ cursor: "pointer" }}>
             <MdWebStories onClick={() => navigate("/ownStory")} size="25px" />
           </Box>
-          <HiUserGroup size="23px" />
+          <FriendRequestPage />
           <SiFacebookgaming size="20px" />
         </HStack>
         <HStack>
@@ -151,17 +166,83 @@ function Navbar() {
             bgColor="gray.100"
             borderRadius="full"
             p="3"
+            _hover={{ cursor: "pointer" }}
+            onClick={() => navigate("/messenger")}
           >
             <BsMessenger size="15px" />
           </Box>
-          <Box
-            display={{ base: "none", lg: "flex" }}
-            bgColor="gray.100"
-            borderRadius="full"
-            p="3"
-          >
-            <IoIosNotifications size="15px" />
-          </Box>
+
+          <Menu>
+            <MenuButton>
+              <Box
+                display={{ base: "none", lg: "flex" }}
+                bgColor="gray.100"
+                borderRadius="full"
+                p="3"
+                position={"relative"}
+                _hover={{ cursor: "pointer" }}
+              >
+                <Text
+                  position="absolute"
+                  borderRadius="full"
+                  border="1px solid red"
+                  fontSize={"10px"}
+                  px="1"
+                  fontWeight={"700"}
+                  top="0"
+                  right="1%"
+                  bg="red"
+                  color="white"
+                >
+                  {user?.notify?.length}
+                </Text>
+                <IoIosNotifications size="15px" />
+              </Box>
+            </MenuButton>
+            <Portal>
+              <MenuList zIndex="1000" px="3" py="2">
+                <Heading fontWeight={"500"} size="sm">
+                  Notifications 🔔
+                </Heading>
+                <VStack gap="1" px="3" py="2" align={"start"} mt="3">
+                  {user?.notify?.length > 0 ? (
+                    user?.notify?.map((el, i) => {
+                      return (
+                        <HStack key={i}>
+                          <Avatar src={el.user_image} />
+                          <Text
+                            fontSize={"14px"}
+                            bg="#f0f2f5"
+                            p="2"
+                            borderRadius={"10px"}
+                            letterSpacing=".4px"
+                            borderTopLeftRadius={"0px"}
+                            borderBottomEndRadius={"0px"}
+                          >
+                            {el?.fName} {el?.lName} {el.response} your friend
+                            request
+                          </Text>
+                        </HStack>
+                      );
+                    })
+                  ) : (
+                    <Text
+                      fontSize={"14px"}
+                      bg="#f0f2f5"
+                      p="2"
+                      borderRadius={"10px"}
+                      letterSpacing=".4px"
+                      borderTopLeftRadius={"0px"}
+                      borderBottomEndRadius={"0px"}
+                    >
+                      No new notification
+                    </Text>
+                  )}
+                </VStack>
+              </MenuList>
+            </Portal>
+          </Menu>
+
           <ProfileInfoSection />
         </HStack>
       </Flex>

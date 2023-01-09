@@ -35,6 +35,7 @@ function Online() {
   const toast = useToast();
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.data?.token);
+  const userDetails = useSelector((state) => state?.singleUser?.singleUserData);
 
   let email, id, password;
 
@@ -58,25 +59,37 @@ function Online() {
       .catch((err) => console.log(err));
   };
 
-  const handleAddFriend = (f, l, image) => {
+  const handleAddFriend = (sF, sL) => {
     let body = {
-      user_name: `${f} ${l}`,
-      user_image: image,
-      type: "friends",
+      recF: sF,
+      recL: sL,
+      senderF: userDetails?.fName,
+      senderL: userDetails?.lName,
+      senderImage: userDetails?.userDetails?.image,
     };
-    console.log({ body });
-
-    axios
-      .patch(`${process.env.REACT_APP_URL}/user`, body, {
-        headers: {
-          token: token,
-        },
+    if (
+      userDetails.friends.find((el) => {
+        if (el.fName == sF && el.lName == sL) {
+          return true;
+        } else {
+          return false;
+        }
       })
-      .then((res) => {
+    ) {
+      toast({
+        title: "Ooppss!! 😰",
+        description: `${sF} ${sL} already added in your friendlist`,
+        status: "warning",
+        position: "top",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      axios.post(`${process.env.REACT_APP_URL}/user/fr`, body).then((res) => {
         if (res.data !== "Already exist") {
           toast({
-            title: "Hey ! Congo 👏",
-            description: `You have added ${body.user_name} as a friend `,
+            title: `Friend req sent to ${sF} ${sL}`,
+            description: "wait for responce",
             status: "success",
             duration: 2000,
             position: "top",
@@ -84,20 +97,40 @@ function Online() {
           });
         } else {
           toast({
-            title: "Ooppss!! 😰",
-            description: `${body.user_name} already added in your friendlist`,
-            status: "warning",
-            position: "top",
+            title: `Hey ! ${userDetails?.fName} 🙋🏻‍♂️ `,
+            description: `You req is pending, Please wait for the response`,
+            status: "error",
             duration: 2000,
+            position: "top",
             isClosable: true,
           });
         }
       });
+    }
   };
 
-  const handleClick = (id) => {
-    dispatch(get_profile_info(id));
-    navigate("/user");
+  const handleClick = (id, fName, lName) => {
+    if (
+      userDetails?.friends?.find((el) => {
+        if (el.fName == fName && el.lName == lName) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    ) {
+      dispatch(get_profile_info(id));
+      navigate("/user");
+    } else {
+      toast({
+        title: `Hey !! ${userDetails?.fName}`,
+        description: `This acc is private 😐, Please add first if you want to see profile`,
+        status: "error",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -109,17 +142,11 @@ function Online() {
       flexDirection={"column"}
       px="4"
       py="4"
-      overflowY={"scroll"}
+      overflowY={"hidden"}
       overflowX={"hidden"}
       gap="4"
       className="online"
     >
-      <Flex>
-        <Heading color="blackAlpha.600" fontSize="17px" fontWeight={"500"}>
-          Sponcored
-        </Heading>
-      </Flex>
-      <hr />
       <Flex justifyContent="space-between" alignItems={"center"}>
         <Heading color="blackAlpha.600" fontSize="17px" fontWeight={"500"}>
           Contacts
@@ -130,12 +157,6 @@ function Online() {
             aria-label="Search database"
             _hover={{ bgColor: "blackAlpha.100" }}
             icon={<BsFillCameraVideoFill />}
-          />
-          <IconButton
-            borderRadius={"full"}
-            aria-label="Search database"
-            _hover={{ bgColor: "blackAlpha.100" }}
-            icon={<AiOutlineSearch />}
           />
           <Friendsonline />
         </HStack>
@@ -157,7 +178,7 @@ function Online() {
                 fontSize={"14px"}
                 fontWeight="500"
                 _hover={{ cursor: "pointer" }}
-                onClick={() => handleClick(el._id)}
+                onClick={() => handleClick(el._id, el?.fName, el?.lName)}
               >
                 {el?.fName.substring(0, 8)} {el?.lName}
               </Text>
@@ -165,9 +186,7 @@ function Online() {
                 size="sm"
                 ml="auto"
                 _hover={{ bg: "none" }}
-                onClick={() =>
-                  handleAddFriend(el?.fName, el?.lName, el?.userDetails?.image)
-                }
+                onClick={() => handleAddFriend(el?.fName, el?.lName)}
               >
                 <IoPersonAddSharp size="20px" />
               </Button>

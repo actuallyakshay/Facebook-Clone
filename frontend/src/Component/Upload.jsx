@@ -56,6 +56,7 @@ function Upload() {
       bgColor={"white"}
       p="3"
       paddingBottom={"1"}
+      border={"1px solid #E8E8E8"}
     >
       <HStack spacing={3} mb="3">
         <Avatar size="sm" src={user?.userDetails?.image} />

@@ -61,6 +61,7 @@ function MainPage() {
               borderRadius="0px"
               onClick={() => setPage(page - 1)}
               disabled={page == 1 ? true : false}
+              border={"1px solid #E8E8E8"}
             >
               prev
             </Button>
@@ -71,6 +72,7 @@ function MainPage() {
               onClick={() => setPage(page + 1)}
               bg="white"
               borderRadius="0px"
+              border={"1px solid #E8E8E8"}
             >
               Next
             </Button>
